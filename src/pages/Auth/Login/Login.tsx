@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 import logo from "../../../assets/Principal_64.png";
+import { cnpjPreProcessor } from "../../../utils/validate";
 
 import styles from "./Login.module.scss";
 
 const Login = () => {
+	const [cnpj, setCnpj] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleCnpjChange = (value: string) => {
+		const cnpj = cnpjPreProcessor(value);
+
+		setCnpj(cnpj);
+	};
+
 	return (
 		<form autoComplete="new-password">
 			<div className={styles.login_container}>
@@ -22,6 +32,10 @@ const Login = () => {
 						name="cnpj"
 						autoComplete="off"
 						className={styles.cnpj_input}
+						value={cnpj}
+						onChange={(event) =>
+							handleCnpjChange(event.target.value)
+						}
 					/>
 					<label>Senha</label>
 					<input
@@ -29,6 +43,8 @@ const Login = () => {
 						name="password"
 						autoComplete="off"
 						className={styles.password_input}
+						value={password}
+						onChange={(event) => setPassword(event.target.value)}
 					/>
 					<span>Esqueci a senha</span>
 				</div>

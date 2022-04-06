@@ -5,7 +5,7 @@ export const initialState: AuthState = {
 	access_token: cookieCutter.get("W_A_T") ?? null,
 	user: cookieCutter.get("U_DA")
 		? JSON.parse(cookieCutter.get("U_DA"))
-		: { cnpj: "" },
+		: { cnpj: "", name: "" },
 	login: {
 		cnpj: "",
 		password: "",

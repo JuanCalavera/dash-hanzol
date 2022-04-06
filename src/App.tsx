@@ -15,8 +15,6 @@ function App() {
 		<div className="App">
 			{content}
 			{/* <div>loading screen</div> */}
-
-			{/* <div className={styles.loading_screen}></div> */}
 		</div>
 	);
 }

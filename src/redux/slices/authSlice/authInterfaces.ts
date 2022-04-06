@@ -1,5 +1,6 @@
 export interface User {
 	cnpj: string;
+	name: string;
 }
 
 interface Login {

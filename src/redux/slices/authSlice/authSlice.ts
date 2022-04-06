@@ -18,11 +18,10 @@ export const authSlice = createSlice({
 		builder.addCase(login.fulfilled, (state, action) => {
 			const response = action.payload;
 			state.access_token = response.access_token;
-			const user = { cnpj: response.cnpj };
-			state.user = user;
+			state.user = response.user;
 
 			cookie.set("W_A_T", response.access_token);
-			cookie.set("U_DA", JSON.stringify(user));
+			cookie.set("U_DA", JSON.stringify(response.user));
 		});
 	},
 });
