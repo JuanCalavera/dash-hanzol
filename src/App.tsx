@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import AuthModule from "./pages/Auth/AuthModule";
+import { useAppSelector } from "./redux/hooks";
+import { selectToken } from "./redux/slices/authSlice/authSelectors";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const token = useAppSelector(selectToken);
+	let content = null;
+
+	if (token) content = <div>home module</div>;
+	else content = <AuthModule />;
+
+	return (
+		<div className="App">
+			{content}
+			{/* <div>loading screen</div> */}
+
+			{/* <div className={styles.loading_screen}></div> */}
+		</div>
+	);
 }
 
 export default App;
