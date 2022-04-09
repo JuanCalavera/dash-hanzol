@@ -1,14 +1,25 @@
-import React from "react";
-import "./App.css";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+
 import AuthModule from "./pages/Auth/AuthModule";
-import { useAppSelector } from "./redux/hooks";
+import MainModule from "./pages/MainModule/MainModule";
+
+import { getCsrfToken } from "./redux/slices/authSlice/authAsyncActions";
 import { selectToken } from "./redux/slices/authSlice/authSelectors";
+
+import "./App.css";
 
 function App() {
 	const token = useAppSelector(selectToken);
+	const dispatch = useAppDispatch();
+
 	let content = null;
 
-	if (token) content = <div>home module</div>;
+	useEffect(() => {
+		dispatch(getCsrfToken());
+	}, [dispatch]);
+
+	if (token) content = <MainModule />;
 	else content = <AuthModule />;
 
 	return (

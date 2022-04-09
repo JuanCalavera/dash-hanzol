@@ -17,11 +17,12 @@ export const authSlice = createSlice({
 	extraReducers: (builder) => {
 		builder.addCase(login.fulfilled, (state, action) => {
 			const response = action.payload;
-			state.access_token = response.access_token;
-			state.user = response.user;
+			state.access_token = response.token;
+			const user = { cnpj: response.user.cnpj, name: response.user.name };
+			state.user = user;
 
-			cookie.set("W_A_T", response.access_token);
-			cookie.set("U_DA", JSON.stringify(response.user));
+			cookie.set("W_A_T", response.token);
+			cookie.set("U_DA", JSON.stringify(user));
 		});
 	},
 });

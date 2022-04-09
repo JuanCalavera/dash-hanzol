@@ -1,5 +1,6 @@
 import { AuthState } from "./authInterfaces";
 import cookieCutter from "cookie-cutter";
+import { ROUTES } from "../../../routes/routes";
 
 export const initialState: AuthState = {
 	access_token: cookieCutter.get("W_A_T") ?? null,
@@ -13,5 +14,5 @@ export const initialState: AuthState = {
 	},
 	errorsModalIsOpen: false,
 	errorsModalErrors: [],
-	currentModule: "login",
+	currentModule: ROUTES.auth.login,
 };

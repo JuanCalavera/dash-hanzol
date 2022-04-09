@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-import logo from "../../../assets/Principal_64.png";
+import logo from "../../../assets/logo-black.png";
+import { useAppDispatch } from "../../../redux/hooks";
+import { login } from "../../../redux/slices/authSlice/authAsyncActions";
 import { cnpjPreProcessor } from "../../../utils/validate";
 
 import styles from "./Login.module.scss";
@@ -8,6 +10,7 @@ import styles from "./Login.module.scss";
 const Login = () => {
 	const [cnpj, setCnpj] = useState("");
 	const [password, setPassword] = useState("");
+	const dispatch = useAppDispatch();
 
 	const handleCnpjChange = (value: string) => {
 		const cnpj = cnpjPreProcessor(value);
@@ -15,8 +18,14 @@ const Login = () => {
 		setCnpj(cnpj);
 	};
 
+	const handleSubmit = (event: any) => {
+		event.preventDefault();
+
+		dispatch(login({ cnpj, password }));
+	};
+
 	return (
-		<form autoComplete="new-password">
+		<form autoComplete="new-password" onSubmit={handleSubmit}>
 			<div className={styles.login_container}>
 				<div className={styles.logo_container}>
 					<img src={logo} alt="Logo" />

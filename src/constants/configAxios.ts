@@ -8,7 +8,7 @@ export const API_URL = BASE_URL + "api/";
 const axiosCreate = async () => {
 	const axiosClient = axios.create({
 		baseURL: API_URL,
-		withCredentials: true,
+		// withCredentials: true,
 	});
 
 	axiosClient.defaults.headers.common[

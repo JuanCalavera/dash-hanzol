@@ -1,0 +1,29 @@
+@import "../../../constants/variables";
+
+.header {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.2rem 0.8rem 2rem 0.8rem;
+
+	img {
+		width: 5rem;
+		height: 2rem;
+	}
+
+	.menu {
+		font-size: 2rem;
+		color: $grayTextForInput;
+	}
+
+	.bell {
+		font-size: 1.5rem;
+	}
+
+	.menu,
+	.bell {
+		position: relative;
+		top: 0.2rem;
+	}
+}
