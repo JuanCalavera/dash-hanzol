@@ -3,11 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import { fetchPubs } from "../../redux/slices/mainSlice/mainAsyncActions";
-
-import "swiper/css";
-import styles from "./Home.module.scss";
 import { selectPubs } from "../../redux/slices/mainSlice/mainSelectors";
 import { PubPiece } from "../../redux/slices/mainSlice/mainInterfaces";
+
+import styles from "./Home.module.scss";
+import Slider from "../../components/Layout/Home/Slider/Slider";
+import PubListItem from "../../components/Layout/Home/PubListItem/PubListemItem";
 
 const Home = (props: any) => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
@@ -23,18 +24,14 @@ const Home = (props: any) => {
 	}, [pubs]);
 
 	return (
-		<>
-			<Swiper
-				spaceBetween={50}
-				slidesPerView={3}
-				onSlideChange={() => console.log("slide change")}
-				onSwiper={(swiper) => console.log(swiper)}
-			>
-				{highLights.map((pub) => (
-					<SwiperSlide>{pub.title}</SwiperSlide>
-				))}
-			</Swiper>
-		</>
+		<div className={styles.home_container}>
+			<Slider highLights={highLights} />
+			<h1 style={{ margin: 0 }}>indicadores vão aqui</h1>
+
+			{pubs.map((pub) => (
+				<PubListItem pub={pub} />
+			))}
+		</div>
 	);
 };
 

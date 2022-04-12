@@ -4,8 +4,10 @@ export interface MainState {
 
 export interface PubPiece {
 	was_liked: boolean;
-	title: boolean;
-	description: boolean;
+	title: string;
+	description: string;
 	file_url: string;
 	file_type: string;
+	id: number;
+	created: string;
 }
