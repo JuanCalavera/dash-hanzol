@@ -1,0 +1,30 @@
+@import "../../../constants/variables";
+
+.home_container {
+	width: 100%;
+	padding: 0 1.2rem 1rem 1.2rem;
+}
+
+.plus_btn_container {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	z-index: 1000;
+
+	.plus_btn_background {
+		position: absolute;
+		top: 25%;
+		left: 28%;
+		background-color: $blackInputColor;
+		width: 1.8rem;
+		height: 1.8rem;
+		z-index: 100;
+	}
+
+	.plus_btn {
+		color: $darkYellowColor;
+		font-size: 4rem;
+		position: relative;
+		z-index: 1000;
+	}
+}

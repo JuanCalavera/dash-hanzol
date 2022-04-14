@@ -2,7 +2,7 @@ import React from "react";
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
 import { MdOutlineMoreVert } from "react-icons/md";
 
-import { PubPiece } from "../../../../redux/slices/mainSlice/mainInterfaces";
+import { PubPiece } from "../../../redux/slices/mainSlice/mainInterfaces";
 
 import styles from "./PubListItem.module.scss";
 
@@ -34,7 +34,7 @@ const PubListItem = (props: { pub: PubPiece }) => {
 
 			<div className={styles.text_container}>
 				<div className={styles.title_block}>
-					<h1>{pub.title} d</h1>
+					<h1>{pub.title}</h1>
 					<h2>Cod. {pub.id}</h2>
 				</div>
 

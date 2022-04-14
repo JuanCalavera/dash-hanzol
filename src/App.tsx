@@ -8,6 +8,7 @@ import { getCsrfToken } from "./redux/slices/authSlice/authAsyncActions";
 import { selectToken } from "./redux/slices/authSlice/authSelectors";
 
 import "./App.css";
+import { fetchAgencyData } from "./redux/slices/pubRequestSlice/pubRequestAsyncActions";
 
 function App() {
 	const token = useAppSelector(selectToken);
@@ -17,6 +18,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getCsrfToken());
+		dispatch(fetchAgencyData());
 	}, [dispatch]);
 
 	if (token) content = <MainModule />;

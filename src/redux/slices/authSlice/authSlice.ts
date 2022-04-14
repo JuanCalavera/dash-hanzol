@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { login } from "./authAsyncActions";
 import { initialState } from "./authInitialState";
 import cookie from "cookie-cutter";
+import { cookieNames } from "./authCookieNames";
 
 export const authSlice = createSlice({
 	name: "auth",
@@ -21,8 +22,8 @@ export const authSlice = createSlice({
 			const user = { cnpj: response.user.cnpj, name: response.user.name };
 			state.user = user;
 
-			cookie.set("W_A_T", response.token);
-			cookie.set("U_DA", JSON.stringify(user));
+			cookie.set(cookieNames.USER_TOKEN, response.token);
+			cookie.set(cookieNames.USER, JSON.stringify(user));
 		});
 	},
 });
