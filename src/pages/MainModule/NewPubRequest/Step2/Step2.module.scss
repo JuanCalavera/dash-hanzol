@@ -1,0 +1,26 @@
+@import "../../../../constants/variables";
+
+.date_container {
+	margin-bottom: 2rem;
+
+	label {
+		font-size: $requestPubFormLabelSize;
+	}
+
+	input {
+		@include basicInputStyle;
+		width: 50%;
+	}
+}
+
+.text_input_container {
+	margin-bottom: 2rem;
+
+	label {
+		font-size: $requestPubFormLabelSize;
+	}
+
+	input {
+		@include basicInputStyle;
+	}
+}

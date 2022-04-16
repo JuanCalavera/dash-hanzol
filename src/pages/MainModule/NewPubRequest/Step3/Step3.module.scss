@@ -1,0 +1,89 @@
+@import "../../../../constants/variables";
+
+.link_input_container {
+	label {
+		font-size: $requestPubFormLabelSize;
+	}
+
+	input {
+		@include basicInputStyle;
+	}
+
+	.add_link_contianer {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		h3 {
+			font-size: 1rem;
+			color: $grayTextForInput;
+			text-align: end;
+			margin-right: 1rem;
+		}
+
+		.plus_btn {
+			font-size: 1.3rem;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.links_list {
+	list-style: none;
+	width: 100%;
+	margin: 1rem 0 2rem 0;
+	padding: 0;
+
+	li {
+		margin-bottom: 0.5rem;
+		display: flex;
+		align-items: center;
+		width: 100%;
+
+		input {
+			@include basicInputStyle;
+			width: 92%;
+			margin-top: 0;
+			margin-right: 0.5rem;
+			background-color: #494949;
+			border: none;
+			text-decoration: underline;
+			color: $grayTextForInput;
+		}
+
+		.close_icon {
+			font-size: 1.5rem;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.upload_label {
+	font-size: $requestPubFormLabelSize;
+	margin: 1.2rem 0;
+}
+
+.upload_input {
+	font-size: 0.8rem;
+	text-decoration: underline;
+	color: $grayTextForInput;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	.attach_icon {
+		font-size: 1.5rem;
+		color: white;
+		margin-left: 0.5rem;
+		transform: rotate(-45deg);
+		position: relative;
+		top: 0.4rem;
+	}
+}

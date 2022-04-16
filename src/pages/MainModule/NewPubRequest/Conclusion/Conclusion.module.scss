@@ -1,0 +1,42 @@
+@import "../../../../constants/variables";
+
+.conclusion_container {
+	$grayColor: #c0c0c0c0;
+	padding: 20% 2rem;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	h1 {
+		font-size: 1.2rem;
+		margin: 0;
+	}
+
+	h2 {
+		font-size: 1.1rem;
+		color: $grayColor;
+		margin: 0;
+		text-align: center;
+	}
+
+	.bell {
+		margin: 1rem 0 1.5rem 0;
+		font-size: 1.5rem;
+	}
+
+	.home_container {
+		border: 2px solid $grayColor;
+		height: 3rem;
+		width: 3rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 100%;
+		margin: 2rem 0 0.5rem 0;
+
+		.home_icon {
+			font-size: 1.3rem;
+			color: $grayColor;
+		}
+	}
+}

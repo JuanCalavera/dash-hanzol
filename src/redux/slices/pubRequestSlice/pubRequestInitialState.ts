@@ -4,8 +4,7 @@ import { cookieNames } from "./pubRequestCookieNames";
 
 export const initialState: PubRequestState = {
 	form: {
-		theme: null,
-		drawType: null,
+		pubType: null,
 		exhibitionDescription: "",
 		deliver_date: "",
 		size: "",
@@ -13,10 +12,8 @@ export const initialState: PubRequestState = {
 		files: [],
 		description: "",
 		budget_types: [],
+		pubSubType: null,
 	},
-	drawTypes: cookie.get(cookieNames.DRAW_TYPES)
-		? JSON.parse(cookie.get(cookieNames.DRAW_TYPES))
-		: [],
 	pubTypes: cookie.get(cookieNames.PUB_TYPES)
 		? JSON.parse(cookie.get(cookieNames.PUB_TYPES))
 		: [],

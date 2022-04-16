@@ -11,19 +11,37 @@ const FormSelectInput = (props: {
 	options: Option[];
 	onChange: (value: number) => void;
 	label: string;
-}) => {
-	return (
+	placeholder: string;
+	value?: number;
+}) => (
+	<div className={styles.form_select_container}>
+		<label>{props.label}</label>
 		<div className={styles.input_container}>
-			<label>{props.label}</label>
 			<select
 				onChange={(event: any) => props.onChange(event.target.value)}
+				value={props.value ?? -1}
+				style={{ color: props.value ? "" : "#3f3f3fa2" }}
 			>
+				<option
+					value="-1"
+					disabled
+					hidden
+					className={styles.placeholder}
+				>
+					{props.placeholder}
+				</option>
 				{props.options.map((option: Option) => (
-					<option value={option.id}>{option.title}</option>
+					<option
+						value={option.id}
+						key={option.id}
+						className={styles.option}
+					>
+						{option.title}
+					</option>
 				))}
 			</select>
 		</div>
-	);
-};
+	</div>
+);
 
 export default FormSelectInput;

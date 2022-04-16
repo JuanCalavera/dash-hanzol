@@ -1,0 +1,15 @@
+@import "../../../../constants/variables";
+
+.input_container {
+	margin-bottom: 2rem;
+
+	label {
+		font-size: $requestPubFormLabelSize;
+	}
+
+	textarea {
+		@include basicInputStyle;
+		height: 8rem;
+		padding: 0.7rem;
+	}
+}

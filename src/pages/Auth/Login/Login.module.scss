@@ -16,6 +16,9 @@
 
 	.logo_container {
 		$imgSize: 4rem;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
 
 		img {
 			width: 7.5rem;

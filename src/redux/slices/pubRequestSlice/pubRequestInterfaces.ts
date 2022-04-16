@@ -1,4 +1,4 @@
-interface DrawType {
+interface PubSubType {
 	id: number;
 	title: string;
 }
@@ -6,6 +6,8 @@ interface DrawType {
 interface PubType {
 	id: number;
 	title: string;
+	question: string;
+	sub_types: PubSubType[];
 }
 
 interface BudgetType {
@@ -13,19 +15,33 @@ interface BudgetType {
 	title: string;
 }
 
+interface Link {
+	id: number;
+	title: string;
+}
+
 export interface PubRequestState {
 	form: {
-		theme: number | null;
-		drawType: number | null;
+		pubType: PubType | null;
+		pubSubType: PubSubType | null;
 		exhibitionDescription: string;
 		deliver_date: string;
 		size: string;
-		links: string[];
+		links: Link[];
 		files: File[];
 		description: string;
 		budget_types: number[];
+		[key: string]:
+			| string
+			| PubType
+			| File[]
+			| string[]
+			| number[]
+			| PubType
+			| PubSubType
+			| Link[]
+			| null;
 	};
-	drawTypes: DrawType[];
 	pubTypes: PubType[];
 	budgetTypes: BudgetType[];
 }

@@ -46,6 +46,9 @@ const Header = () => {
 					<div className={styles.placeholder_div}>A</div>
 				</div>
 			);
+
+		case headerTypes.WITHOUT_HEADER:
+			return <div></div>;
 	}
 };
 

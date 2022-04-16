@@ -1,0 +1,37 @@
+@import "../../../constants/variables";
+
+.step_layout {
+	height: 88vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0 1.5rem 1rem 1.5rem;
+
+	.forward_btn_container {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		width: 100%;
+
+		label {
+			margin-right: 0.6rem;
+		}
+
+		.arrow_btn,
+		.arrow_btn_filled {
+			color: $darkYellowColor;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.arrow_btn {
+			font-size: 2.2rem;
+		}
+
+		.arrow_btn_filled {
+			font-size: 2.4rem;
+		}
+	}
+}

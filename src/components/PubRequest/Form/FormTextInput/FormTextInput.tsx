@@ -6,17 +6,16 @@ const FormTextInput = (props: {
 	label: string;
 	value: string;
 	onChange: (value: string) => void;
-}) => {
-	return (
-		<div className={styles.input_container}>
-			<label>{props.label}</label>
-			<input
-				type="text"
-				value={props.value}
-				onChange={(event: any) => props.onChange(event.target.value)}
-			/>
-		</div>
-	);
-};
+	placeholder?: string;
+}) => (
+	<div className={styles.input_container}>
+		<label>{props.label}</label>
+		<textarea
+			value={props.value}
+			onChange={(event: any) => props.onChange(event.target.value)}
+			placeholder={props.placeholder}
+		/>
+	</div>
+);
 
 export default FormTextInput;

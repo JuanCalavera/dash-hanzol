@@ -3,3 +3,13 @@ $grayTextForInput: #cccccc;
 $orangeColor: #ff6600;
 $likeColor: #a6f5a6;
 $darkYellowColor: #ecbc00;
+
+$requestPubFormLabelSize: 0.9rem;
+
+@mixin basicInputStyle {
+	width: 100%;
+	border-radius: 10px;
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+}
