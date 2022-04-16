@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 
 import FormTextInput from "../../../../components/PubRequest/Form/FormTextInput/FormTextInput";
 import StepLayout from "../../../../components/PubRequest/StepLayout/StepLayout";
 
 import { navigate } from "../../../../redux/slices/navigationSlice/navigationSlice";
-import { selectPubRequestForm } from "../../../../redux/slices/pubRequestSlice/pubRequestSelectors";
 import {
+	selectBudgetTypes,
+	selectPubRequestForm,
+} from "../../../../redux/slices/pubRequestSlice/pubRequestSelectors";
+import {
+	addBudget,
 	changeTextInput,
+	removeBudget,
 	requestFormTextFields,
 } from "../../../../redux/slices/pubRequestSlice/pubRequestSlice";
 
@@ -18,8 +23,18 @@ import styles from "./Step4.module.scss";
 const Step4 = () => {
 	const dispatch = useAppDispatch();
 	const form = useAppSelector(selectPubRequestForm);
+	const budgetTypes = useAppSelector(selectBudgetTypes);
+
+	const [descriptionError, setDescriptionError] = useState(false);
 
 	const conclude = () => {
+		setDescriptionError(false);
+
+		if (!form.description || !form.description.length) {
+			setDescriptionError(true);
+			return;
+		}
+
 		dispatch(
 			navigate({
 				from: ROUTES.main.newPubRequest.step4,
@@ -28,9 +43,48 @@ const Step4 = () => {
 		);
 	};
 
+	const handleCheck = (id: number, checked: boolean) => {
+		if (checked) dispatch(removeBudget(id));
+		else dispatch(addBudget(id));
+	};
+
 	return (
 		<StepLayout forward={conclude} forwardText="Enviar Solicitação">
-			<div>tipos de orçamento</div>
+			<div className={styles.budget_types_container}>
+				{budgetTypes.map((type) => {
+					const checked = form.budget_types.find((t) => t === type.id)
+						? true
+						: false;
+
+					return (
+						<div className={styles.budget_container}>
+							<div>
+								<label>Tipo de orçamento</label>
+							</div>
+
+							<div className={styles.budget_label}>
+								<label>{type.title}?</label>
+							</div>
+
+							<div className={styles.switch_container}>
+								<label
+									className={styles.switch}
+									onChange={() =>
+										handleCheck(type.id, checked)
+									}
+								>
+									<input type="checkbox" checked={checked} />
+									<span className={styles.slider}></span>
+								</label>
+
+								<label className={styles.check_label}>
+									{checked ? "Sim" : "Não"}
+								</label>
+							</div>
+						</div>
+					);
+				})}
+			</div>
 
 			<FormTextInput
 				value={form.description}
@@ -44,6 +98,7 @@ const Step4 = () => {
 					)
 				}
 				placeholder="Insira um comentário"
+				error={descriptionError}
 			/>
 		</StepLayout>
 	);

@@ -7,6 +7,7 @@ const FormTextInput = (props: {
 	value: string;
 	onChange: (value: string) => void;
 	placeholder?: string;
+	error: boolean;
 }) => (
 	<div className={styles.input_container}>
 		<label>{props.label}</label>
@@ -14,6 +15,7 @@ const FormTextInput = (props: {
 			value={props.value}
 			onChange={(event: any) => props.onChange(event.target.value)}
 			placeholder={props.placeholder}
+			className={`${props.error ? styles.error_input : ""}`}
 		/>
 	</div>
 );

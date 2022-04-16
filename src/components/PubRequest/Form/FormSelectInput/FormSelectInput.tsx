@@ -13,6 +13,7 @@ const FormSelectInput = (props: {
 	label: string;
 	placeholder: string;
 	value?: number;
+	error: boolean;
 }) => (
 	<div className={styles.form_select_container}>
 		<label>{props.label}</label>
@@ -21,6 +22,7 @@ const FormSelectInput = (props: {
 				onChange={(event: any) => props.onChange(event.target.value)}
 				value={props.value ?? -1}
 				style={{ color: props.value ? "" : "#3f3f3fa2" }}
+				className={`${props.error ? styles.select_error : ""}`}
 			>
 				<option
 					value="-1"

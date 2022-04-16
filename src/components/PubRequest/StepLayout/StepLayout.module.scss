@@ -1,7 +1,7 @@
 @import "../../../constants/variables";
 
 .step_layout {
-	height: 88vh;
+	min-height: 88vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

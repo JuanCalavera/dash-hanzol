@@ -62,6 +62,17 @@ export const pubRequestSlice = createSlice({
 			);
 			state.form.links = links;
 		},
+		addBudget: (state, action) => {
+			const budgets = state.form.budget_types.slice();
+			budgets.push(action.payload);
+			state.form.budget_types = budgets;
+		},
+		removeBudget: (state, action) => {
+			const budgets = state.form.budget_types.filter(
+				(budget) => budget !== action.payload,
+			);
+			state.form.budget_types = budgets;
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchAgencyData.fulfilled, (state, action) => {
@@ -92,6 +103,8 @@ export const {
 	selectSubType,
 	addNewLink,
 	removeLink,
+	addBudget,
+	removeBudget,
 } = pubRequestSlice.actions;
 
 export default pubRequestSlice.reducer;

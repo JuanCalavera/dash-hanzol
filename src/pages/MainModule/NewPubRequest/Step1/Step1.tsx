@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 
 import FormSelectInput from "../../../../components/PubRequest/Form/FormSelectInput/FormSelectInput";
@@ -16,10 +16,12 @@ import { navigate } from "../../../../redux/slices/navigationSlice/navigationSli
 
 import { ROUTES } from "../../../../routes/routes";
 
-const Step1 = (props: any) => {
+const Step1 = () => {
 	const pubTypes = useAppSelector(selectPubTypes);
 	const form = useAppSelector(selectPubRequestForm);
 	const dispatch = useAppDispatch();
+	const [pubTypeError, setPubTypeError] = useState(false);
+	const [subPubTypeError, setSubPubTypeError] = useState(false);
 
 	const handleTypeSelect = (selected: number) => {
 		const type = pubTypes.find((type) => type.id === +selected);
@@ -34,6 +36,15 @@ const Step1 = (props: any) => {
 	};
 
 	const nextStep = () => {
+		setPubTypeError(false);
+		setSubPubTypeError(false);
+
+		if (!form.pubType || !form.pubSubType) {
+			setPubTypeError(true);
+			setSubPubTypeError(true);
+			return;
+		}
+
 		dispatch(
 			navigate({
 				from: ROUTES.main.newPubRequest.step1,
@@ -50,6 +61,7 @@ const Step1 = (props: any) => {
 				onChange={(selected) => handleTypeSelect(selected)}
 				placeholder="Selecione um tema"
 				value={form.pubType?.id}
+				error={pubTypeError}
 			/>
 
 			<FormSelectInput
@@ -60,6 +72,7 @@ const Step1 = (props: any) => {
 					form.pubType?.question ? form.pubType?.question : ""
 				}
 				value={form.pubSubType?.id}
+				error={subPubTypeError}
 			/>
 		</StepLayout>
 	);

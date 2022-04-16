@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 
 import StepLayout from "../../../../components/PubRequest/StepLayout/StepLayout";
@@ -18,14 +18,55 @@ import styles from "./Step2.module.scss";
 const Step2 = () => {
 	const dispatch = useAppDispatch();
 	const form = useAppSelector(selectPubRequestForm);
+	const [descriptionError, setDescriptionError] = useState(false);
+	const [dateError, setDateError] = useState(false);
+	const [sizeError, setSizeError] = useState(false);
 
 	const nextStep = () => {
+		setDescriptionError(false);
+		setDateError(false);
+		setSizeError(false);
+		const isValid = isValidDate(form.deliver_date);
+
+		if (
+			!form.exhibitionDescription.length ||
+			!form.exhibitionDescription ||
+			!form.deliver_date ||
+			!form.deliver_date.length ||
+			!form.size ||
+			!form.size.length ||
+			!isValid
+		) {
+			if (
+				!form.exhibitionDescription.length ||
+				!form.exhibitionDescription
+			)
+				setDescriptionError(true);
+
+			if (!form.deliver_date.length || !form.deliver_date)
+				setDateError(true);
+
+			if (!form.size.length || !form.size) setSizeError(true);
+
+			if (!isValid) setDateError(true);
+
+			return;
+		}
+
 		dispatch(
 			navigate({
 				from: ROUTES.main.newPubRequest.step2,
 				to: ROUTES.main.newPubRequest.step3,
 			}),
 		);
+	};
+
+	const isValidDate = (date: string) => {
+		const d = new Date();
+		const fD = new Date(
+			d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(),
+		);
+		return new Date(date) >= new Date(fD);
 	};
 
 	const handleSizeChange = (value: string) => {
@@ -54,6 +95,7 @@ const Step2 = () => {
 						}),
 					)
 				}
+				error={descriptionError}
 			/>
 
 			<div className={styles.date_container}>
@@ -65,6 +107,7 @@ const Step2 = () => {
 						onChange={(event: any) =>
 							handleDateChange(event.target.value)
 						}
+						className={`${dateError ? styles.error_input : ""}`}
 					/>
 				</div>
 			</div>
@@ -78,6 +121,7 @@ const Step2 = () => {
 						onChange={(event: any) =>
 							handleSizeChange(event.target.value)
 						}
+						className={`${sizeError ? styles.error_input : ""}`}
 					/>
 				</div>
 			</div>
