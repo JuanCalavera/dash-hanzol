@@ -67,3 +67,9 @@ const isCnpjEndDotOutOfPlace = (Cnpj: string) =>
 	isCnpjEndDash(Cnpj) && Cnpj.length !== 3 && Cnpj.length !== 7;
 const isCnpjEndBarOutOfPlace = (Cnpj: string) =>
 	isCnpjEndBar(Cnpj) && Cnpj.length !== 11;
+
+export const isValidLink = (link: string) => {
+	const regex = /^(http:\/\/|https:\/\/).+$/;
+
+	return regex.test(link);
+};

@@ -9,7 +9,7 @@
 		@include basicInputStyle;
 	}
 
-	.add_link_contianer {
+	.add_link_container {
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -53,37 +53,9 @@
 			text-decoration: underline;
 			color: $grayTextForInput;
 		}
-
-		.close_icon {
-			font-size: 1.5rem;
-
-			&:hover {
-				cursor: pointer;
-			}
-		}
 	}
 }
 
-.upload_label {
-	font-size: $requestPubFormLabelSize;
-	margin: 1.2rem 0;
-}
-
-.upload_input {
-	font-size: 0.8rem;
-	text-decoration: underline;
-	color: $grayTextForInput;
-
-	&:hover {
-		cursor: pointer;
-	}
-
-	.attach_icon {
-		font-size: 1.5rem;
-		color: white;
-		margin-left: 0.5rem;
-		transform: rotate(-45deg);
-		position: relative;
-		top: 0.4rem;
-	}
+.error_input {
+	@include inputInsetError;
 }

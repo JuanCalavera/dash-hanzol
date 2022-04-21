@@ -1,0 +1,47 @@
+@import "../../../constants/variables";
+
+.upload_label {
+	font-size: $requestPubFormLabelSize;
+	margin: 1.2rem 0;
+}
+
+.upload_input {
+	font-size: 0.8rem;
+	text-decoration: underline;
+	color: $grayTextForInput;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	.attach_icon {
+		font-size: 1.5rem;
+		color: white;
+		margin-left: 0.5rem;
+		transform: rotate(-45deg);
+		position: relative;
+		top: 0.4rem;
+	}
+}
+
+.file_slide {
+	margin-top: 2rem;
+
+	.file_image_container {
+		height: 6.5rem;
+		position: relative;
+
+		img {
+			width: 100%;
+			height: 100%;
+			border-radius: 15px;
+		}
+
+		.close_btn {
+			position: absolute;
+			top: -0.4rem;
+			right: -0.4rem;
+			z-index: 1000;
+		}
+	}
+}

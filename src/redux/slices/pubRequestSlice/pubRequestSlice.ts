@@ -1,8 +1,8 @@
+import cookie from "cookie-cutter";
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { fetchAgencyData } from "./pubRequestAsyncActions";
 import { initialState } from "./pubRequestInitialState";
-import cookie from "cookie-cutter";
 import { cookieNames } from "./pubRequestCookieNames";
 
 export enum requestFormTextFields {
@@ -24,7 +24,10 @@ export const pubRequestSlice = createSlice({
 	initialState,
 	reducers: {
 		emptyForm: (state) => {
-			state.form = { ...initialState.form };
+			state.form = {
+				...initialState.form,
+				budget_types: [state.budgetTypes[0].id],
+			};
 		},
 		changeTextInput: (
 			state,
@@ -73,7 +76,18 @@ export const pubRequestSlice = createSlice({
 			);
 			state.form.budget_types = budgets;
 		},
+		addFile: (state, action: { type: string; payload: File }) => {
+			const files = state.form.files.slice();
+			files.push(action.payload);
+			state.form.files = files;
+		},
+		removeFile: (state, action: { type: string; payload: File }) => {
+			state.form.files = state.form.files.filter(
+				(file) => file != action.payload,
+			);
+		},
 	},
+
 	extraReducers: (builder) => {
 		builder.addCase(fetchAgencyData.fulfilled, (state, action) => {
 			const response = action.payload;
@@ -105,6 +119,8 @@ export const {
 	removeLink,
 	addBudget,
 	removeBudget,
+	addFile,
+	removeFile,
 } = pubRequestSlice.actions;
 
 export default pubRequestSlice.reducer;

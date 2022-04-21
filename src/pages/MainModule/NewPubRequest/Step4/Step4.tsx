@@ -12,6 +12,7 @@ import {
 import {
 	addBudget,
 	changeTextInput,
+	emptyForm,
 	removeBudget,
 	requestFormTextFields,
 } from "../../../../redux/slices/pubRequestSlice/pubRequestSlice";
@@ -19,28 +20,35 @@ import {
 import { ROUTES } from "../../../../routes/routes";
 
 import styles from "./Step4.module.scss";
+import { sendPubRequest } from "../../../../redux/slices/pubRequestSlice/pubRequestAsyncActions";
 
 const Step4 = () => {
 	const dispatch = useAppDispatch();
 	const form = useAppSelector(selectPubRequestForm);
 	const budgetTypes = useAppSelector(selectBudgetTypes);
 
-	const [descriptionError, setDescriptionError] = useState(false);
-
 	const conclude = () => {
-		setDescriptionError(false);
-
-		if (!form.description || !form.description.length) {
-			setDescriptionError(true);
+		if (!form.budget_types.length) {
+			alert("Você precisa habilitar ao menos um tipo de orçamento");
 			return;
 		}
 
-		dispatch(
-			navigate({
-				from: ROUTES.main.newPubRequest.step4,
-				to: ROUTES.main.newPubRequest.newPubRequestConclusion,
-			}),
-		);
+		dispatch(sendPubRequest())
+			.unwrap()
+			.then(() => {
+				dispatch(emptyForm());
+
+				dispatch(
+					navigate({
+						from: ROUTES.main.newPubRequest.step4,
+						to: ROUTES.main.newPubRequest.newPubRequestConclusion,
+					}),
+				);
+			})
+			.catch((err) => {
+				console.log(err.response);
+				alert("Ocorreu um erro ao enviar o seu pedido");
+			});
 	};
 
 	const handleCheck = (id: number, checked: boolean) => {
@@ -98,7 +106,7 @@ const Step4 = () => {
 					)
 				}
 				placeholder="Insira um comentário"
-				error={descriptionError}
+				error={false}
 			/>
 		</StepLayout>
 	);

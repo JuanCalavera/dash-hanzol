@@ -20,22 +20,17 @@ const Step2 = () => {
 	const form = useAppSelector(selectPubRequestForm);
 	const [descriptionError, setDescriptionError] = useState(false);
 	const [dateError, setDateError] = useState(false);
-	const [sizeError, setSizeError] = useState(false);
 
 	const nextStep = () => {
 		setDescriptionError(false);
 		setDateError(false);
-		setSizeError(false);
-		const isValid = isValidDate(form.deliver_date);
 
 		if (
 			!form.exhibitionDescription.length ||
 			!form.exhibitionDescription ||
 			!form.deliver_date ||
 			!form.deliver_date.length ||
-			!form.size ||
-			!form.size.length ||
-			!isValid
+			!isValidDate(form.deliver_date)
 		) {
 			if (
 				!form.exhibitionDescription.length ||
@@ -46,9 +41,7 @@ const Step2 = () => {
 			if (!form.deliver_date.length || !form.deliver_date)
 				setDateError(true);
 
-			if (!form.size.length || !form.size) setSizeError(true);
-
-			if (!isValid) setDateError(true);
+			if (!isValidDate(form.deliver_date)) setDateError(true);
 
 			return;
 		}
@@ -121,7 +114,6 @@ const Step2 = () => {
 						onChange={(event: any) =>
 							handleSizeChange(event.target.value)
 						}
-						className={`${sizeError ? styles.error_input : ""}`}
 					/>
 				</div>
 			</div>

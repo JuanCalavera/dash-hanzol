@@ -15,5 +15,5 @@
 }
 
 .error_input {
-	box-shadow: 0 0 4px 2px rgb(236, 23, 23);
+	@include inputInsetError;
 }

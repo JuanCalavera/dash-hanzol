@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { AiFillPlusCircle } from "react-icons/ai";
 import { IoCloseCircle } from "react-icons/io5";
-import { MdAttachFile } from "react-icons/md";
 
 import StepLayout from "../../../../components/PubRequest/StepLayout/StepLayout";
 
@@ -16,12 +15,16 @@ import { selectPubRequestForm } from "../../../../redux/slices/pubRequestSlice/p
 import { ROUTES } from "../../../../routes/routes";
 
 import styles from "./Step3.module.scss";
+import FilesSliderSection from "../../../../components/PubRequest/FilesSliderSection/FilesSliderSection";
+import CloseBtnIcon from "../../../../components/PubRequest/CloseBtnIcon/CloseBtnIcon";
+import { isValidLink } from "../../../../utils/validate";
 
 const Step3 = () => {
 	const form = useAppSelector(selectPubRequestForm);
 	const dispatch = useAppDispatch();
 	const [newLink, setNewLink] = useState("");
 	const [idCounter, setIdCounter] = useState(1);
+	const [linkError, setLinkError] = useState(false);
 
 	const nextStep = () => {
 		dispatch(
@@ -33,6 +36,14 @@ const Step3 = () => {
 	};
 
 	const addLink = () => {
+		setLinkError(false);
+
+		if (!isValidLink(newLink)) {
+			setLinkError(true);
+			alert("Links devem começar com 'http://' ou 'https://'");
+			return;
+		}
+
 		dispatch(addNewLink({ title: newLink, id: idCounter }));
 		setNewLink("");
 		setIdCounter(idCounter + 1);
@@ -49,9 +60,10 @@ const Step3 = () => {
 						onChange={(event: any) =>
 							setNewLink(event.target.value)
 						}
+						className={`${linkError ? styles.error_input : ""}`}
 					/>
 				</div>
-				<div className={styles.add_link_contianer}>
+				<div className={styles.add_link_container}>
 					<h3>Adicionar Links</h3>
 					<AiFillPlusCircle
 						className={styles.plus_btn}
@@ -64,27 +76,14 @@ const Step3 = () => {
 				{form.links.map((link) => (
 					<li key={Math.random()}>
 						<input type="text" value={link.title} readOnly />
-						<IoCloseCircle
+						<CloseBtnIcon
 							onClick={() => dispatch(removeLink(link.id))}
-							className={styles.close_icon}
 						/>
 					</li>
 				))}
 			</ul>
 
-			<div className={styles.upload_label}>
-				<label>Fotos e vídeos</label>
-			</div>
-
-			<div>
-				<label className={styles.upload_input}>
-					Anexar foto ou vídeo
-					<input type="file" hidden />
-					<MdAttachFile className={styles.attach_icon} />
-				</label>
-			</div>
-
-			<div>slider de imagens</div>
+			<FilesSliderSection />
 		</StepLayout>
 	);
 };
