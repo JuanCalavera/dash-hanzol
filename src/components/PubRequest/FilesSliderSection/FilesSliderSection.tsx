@@ -12,7 +12,7 @@ import styles from "./FilesSliderSection.module.scss";
 import { selectPubRequestForm } from "../../../redux/slices/pubRequestSlice/pubRequestSelectors";
 import CloseBtnIcon from "../CloseBtnIcon/CloseBtnIcon";
 
-const FilesSliderSection = (props: any) => {
+const FilesSliderSection = () => {
 	const dispatch = useAppDispatch();
 	const form = useAppSelector(selectPubRequestForm);
 
@@ -40,12 +40,7 @@ const FilesSliderSection = (props: any) => {
 				</label>
 			</div>
 
-			<Swiper
-				spaceBetween={15}
-				slidesPerView={2.5}
-				onSlideChange={() => console.log("slide change")}
-				onSwiper={(swiper) => console.log(swiper)}
-			>
+			<Swiper spaceBetween={15} slidesPerView={2.5}>
 				{form.files.map((file) => (
 					<SwiperSlide className={styles.file_slide} key={file.name}>
 						<div className={styles.file_image_container}>

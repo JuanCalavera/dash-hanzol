@@ -37,5 +37,9 @@ export const ROUTES = {
 				headerType: headerTypes.WITHOUT_HEADER,
 			},
 		},
+		pubDetails: {
+			name: "PUB_DETAILS",
+			headerType: headerTypes.BACK_WITHOUT_TEXT,
+		},
 	},
 };

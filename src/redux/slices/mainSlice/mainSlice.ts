@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import cookie from "cookie-cutter";
 import { fetchPubs } from "./mainAsyncActions";
 import { initialState } from "./mainInitialState";
 
@@ -7,12 +6,9 @@ export const mainSlice = createSlice({
 	name: "main",
 	initialState,
 	reducers: {
-		// setLoginFormErrors: (state, action) => {
-		// 	state.login.errors = action.payload;
-		// },
-		// emptyLoginFormErrors: (state) => {
-		// 	state.login.errors = {};
-		// },
+		selectPub: (state, action) => {
+			state.currentPubPiece = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchPubs.fulfilled, (state, action) => {
@@ -21,6 +17,6 @@ export const mainSlice = createSlice({
 	},
 });
 
-// export const { setLoginFormErrors, emptyLoginFormErrors } = mainSlice.actions;
+export const { selectPub } = mainSlice.actions;
 
 export default mainSlice.reducer;

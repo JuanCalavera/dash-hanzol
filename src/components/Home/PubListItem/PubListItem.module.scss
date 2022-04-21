@@ -64,31 +64,5 @@
 		top: 0.8rem;
 		right: 0.5rem;
 		display: flex;
-
-		.like_container,
-		.dislike_container {
-			border-radius: 50%;
-			$size: 1rem;
-			width: $size;
-			height: $size;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-right: 0.3rem;
-		}
-
-		.like_container {
-			background-color: $likeColor;
-		}
-
-		.dislike_container {
-			background-color: $orangeColor;
-		}
-
-		.icon_dislike,
-		.icon_like {
-			font-size: 0.7rem;
-			color: $blackInputColor;
-		}
 	}
 }

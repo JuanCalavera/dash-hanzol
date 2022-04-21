@@ -5,6 +5,7 @@ import { ROUTES } from "../../routes/routes";
 
 import Home from "./Home/Home";
 import NewPubRequestModule from "./NewPubRequest/NewPubRequestModule";
+import PubDetails from "./PubDetails/PubDetails";
 
 import { selectCurrentScreen } from "../../redux/slices/navigationSlice/navigationSlice";
 
@@ -27,6 +28,12 @@ const MainModule = () => {
 			return (
 				<Layout>
 					<NewPubRequestModule />
+				</Layout>
+			);
+		case ROUTES.main.pubDetails.name:
+			return (
+				<Layout>
+					<PubDetails />
 				</Layout>
 			);
 	}

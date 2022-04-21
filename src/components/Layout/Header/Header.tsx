@@ -33,8 +33,17 @@ const Header = () => {
 					<VscBell className={styles.bell} />
 				</div>
 			);
+
 		case headerTypes.BACK_WITHOUT_TEXT:
-			return <div className={styles.header}>BACK_WITHOUT_TEXT</div>;
+			return (
+				<div className={styles.header}>
+					<button className={styles.back_btn} onClick={navigateBack}>
+						<IoArrowBackSharp className={styles.back_icon} />
+					</button>
+					<div className={styles.placeholder_div}>A</div>
+					<div className={styles.placeholder_div}>A</div>
+				</div>
+			);
 
 		case headerTypes.BACK_WITH_TEXT:
 			return (

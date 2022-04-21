@@ -1,5 +1,6 @@
 export interface MainState {
 	pubPieces: PubPiece[];
+	currentPubPiece: PubPiece | null;
 }
 
 export interface PubPiece {
