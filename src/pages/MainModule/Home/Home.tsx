@@ -8,11 +8,12 @@ import Slider from "../../../components/Home/Slider/Slider";
 import { fetchPubs } from "../../../redux/slices/mainSlice/mainAsyncActions";
 import { selectPubs } from "../../../redux/slices/mainSlice/mainSelectors";
 import { PubPiece } from "../../../redux/slices/mainSlice/mainInterfaces";
-
-import styles from "./Home.module.scss";
 import { emptyForm } from "../../../redux/slices/pubRequestSlice/pubRequestSlice";
 import { navigate } from "../../../redux/slices/navigationSlice/navigationSlice";
+
 import { ROUTES } from "../../../routes/routes";
+
+import styles from "./Home.module.scss";
 
 const Home = () => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
@@ -40,7 +41,6 @@ const Home = () => {
 	return (
 		<div className={styles.home_container}>
 			<Slider highLights={highLights} />
-			<h1 style={{ margin: 0 }}>indicadores vão aqui</h1>
 
 			{pubs.map((pub) => (
 				<PubListItem pub={pub} key={pub.id} />

@@ -2,14 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 import { headerTypes, ROUTES } from "../../../routes/routes";
 import { RootState } from "../../store";
 
+enum transitions {
+	IN = "in",
+	OUT = "back",
+}
+
 interface navigationState {
 	currentScreen: any;
 	stack: any[];
+	transitionType: string;
 }
 
 const initialState: navigationState = {
 	currentScreen: ROUTES.main.home,
 	stack: [],
+	transitionType: transitions.IN,
 };
 
 export const navigationSlice = createSlice({
@@ -32,23 +39,27 @@ export const navigationSlice = createSlice({
 				state.stack = newStack;
 			}
 
+			state.transitionType = transitions.OUT;
 			state.currentScreen = to;
 		},
 		home: (state) => {
+			state.transitionType = transitions.IN;
 			state.currentScreen = ROUTES.main.home;
 		},
 		back: (state) => {
 			const stack = state.stack.slice();
 			const backTo = stack.pop();
+			state.transitionType = transitions.IN;
 			state.currentScreen = backTo;
 			state.stack = stack;
 		},
 	},
-	extraReducers: (builder) => {},
 });
 
 export const selectCurrentScreen = (state: RootState) =>
 	state.navigation.currentScreen;
+export const selectTransitionType = (state: RootState) =>
+	state.navigation.transitionType;
 
 export const { navigate, home, back } = navigationSlice.actions;
 

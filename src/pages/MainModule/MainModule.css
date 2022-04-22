@@ -1,0 +1,40 @@
+.back-enter {
+	opacity: 0.5;
+	transform: translateX(-80%);
+}
+.back-exit {
+	transform: translateX(0);
+	opacity: 1;
+}
+.back-enter-active {
+	transform: translateX(0);
+	opacity: 1;
+}
+.back-exit-active {
+	transform: translateX(80%);
+	opacity: 0.5;
+}
+
+.in-enter {
+	opacity: 0.5;
+	transform: translateX(80%);
+}
+.in-exit {
+	transform: translateX(0);
+	opacity: 1;
+}
+.in-enter-active {
+	transform: translateX(0);
+	opacity: 1;
+}
+.in-exit-active {
+	transform: translateX(-80%);
+	opacity: 0.5;
+}
+
+.in-enter-active,
+.in-exit-active,
+.back-enter-active,
+.back-exit-active {
+	transition: all 200ms;
+}

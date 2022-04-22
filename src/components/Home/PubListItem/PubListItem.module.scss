@@ -2,7 +2,7 @@
 
 .item_container {
 	width: 100%;
-	height: 8rem;
+	min-height: 8rem;
 	color: darken($grayTextForInput, 5);
 	background-color: $blackInputColor;
 	display: flex;
@@ -64,5 +64,32 @@
 		top: 0.8rem;
 		right: 0.5rem;
 		display: flex;
+	}
+
+	@media screen and (max-width: 300px) {
+		.text_container {
+			margin-left: 0.6rem;
+			padding: 0.6rem 0.6rem 0.5rem 0;
+
+			h1 {
+				font-size: 0.8rem;
+				margin-bottom: 0.2rem;
+				max-width: 85%;
+			}
+
+			h2 {
+				font-size: 0.5rem;
+			}
+
+			p {
+				font-size: 0.6rem;
+				text-align: justify;
+			}
+
+			h3 {
+				font-weight: 400;
+				font-size: 0.5rem;
+			}
+		}
 	}
 }

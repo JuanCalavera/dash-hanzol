@@ -3,6 +3,10 @@
 .home_container {
 	width: 100%;
 	padding: 0 1.2rem 1rem 1.2rem;
+
+	@media screen and (min-width: 750px) {
+		padding: 0 15% 1rem 15%;
+	}
 }
 
 .plus_btn_container {

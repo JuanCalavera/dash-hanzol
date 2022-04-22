@@ -1,3 +1,5 @@
+@import "../../../constants/variables";
+
 .highlight {
 	height: 20rem;
 	width: 100%;
@@ -10,7 +12,27 @@
 	}
 }
 
-// .highlight_slider {
-// 	width: 70vw !important;
-// 	margin-right: 1.5rem !important;
-// }
+.arrows_container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: space-between;
+	padding: 1rem 35%;
+}
+
+.full_arrow,
+.outlined_lg_arrow,
+.outlined_sm_arrow {
+	color: $darkYellowColor;
+}
+.full_arrow {
+	font-size: 1.5rem;
+}
+
+.outlined_lg_arrow {
+	font-size: 1.2rem;
+}
+
+.outlined_sm_arrow {
+	font-size: 0.7rem;
+}
