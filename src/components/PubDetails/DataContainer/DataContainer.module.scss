@@ -1,0 +1,129 @@
+@import "../../../constants/variables";
+
+.details_data_container {
+	height: 80%;
+	border-radius: 20px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+
+	img {
+		width: 100%;
+		margin: 0;
+		position: relative;
+		z-index: 100;
+	}
+
+	.text_container {
+		background-color: #3a3a3a;
+		margin-top: 0;
+		position: relative;
+		bottom: 1rem;
+		border-radius: 0 0 20px 20px;
+		z-index: 10;
+
+		h1 {
+			font-size: 1.2rem;
+		}
+
+		h3 {
+			font-size: 0.7rem;
+			margin: 0;
+			margin-top: 0.3rem;
+			color: #969696ef;
+			font-weight: 400;
+		}
+	}
+
+	.right_top_icon_container {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.4rem;
+		z-index: 1000;
+	}
+
+	@media screen and (min-height: 900px) and (min-width: 500px) {
+		& {
+			.text_container {
+				h1 {
+					font-size: 1.4rem !important;
+				}
+
+				h3 {
+					font-size: 0.9rem !important;
+				}
+			}
+		}
+	}
+}
+
+.full_img {
+	img {
+		height: 88%;
+		border-radius: 20px;
+	}
+
+	.text_container {
+		padding: 1rem 0.5rem 0.6rem 0.8rem;
+		position: relative;
+		min-height: 12%;
+
+		h1 {
+			margin: 0;
+			color: $grayTextForInput;
+			font-weight: 400;
+		}
+
+		.expand_btn {
+			position: absolute;
+			bottom: 0.3rem;
+			left: 45%;
+			font-size: 1.2rem;
+			color: #a1a1a1;
+		}
+	}
+}
+
+.half_img {
+	// height: 80%;
+	overflow: hidden;
+	// position: relative;
+	// top: 2rem;
+
+	.image_container {
+		border-radius: 20px 20px 0 0;
+		overflow: hidden;
+		height: 70%;
+
+		img {
+			height: 120%;
+			position: relative;
+			bottom: 1.5rem;
+		}
+	}
+
+	.text_container {
+		padding: 1rem 1rem 0.8rem 1rem;
+		min-height: 30%;
+		// position: relative;
+		// bottom: 10rem;
+		// z-index: 2000;
+
+		h1 {
+			margin: 0;
+			color: $grayTextForInput;
+			font-weight: bold;
+			font-size: 1.3rem;
+		}
+
+		h3 {
+			text-align: right;
+		}
+
+		p {
+			font-size: 0.9rem;
+			margin: 0.5rem 0;
+			color: #b1b1b1da;
+		}
+	}
+}

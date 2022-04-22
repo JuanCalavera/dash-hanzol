@@ -1,87 +1,93 @@
-import React, { useState } from "react";
-import { BsChevronCompactDown } from "react-icons/bs";
-import { MdThumbDown, MdThumbUpAlt } from "react-icons/md";
-import RatingRoundIcon from "../../../components/RatingRoundIcon/RatingRoundIcon";
-import { useAppSelector } from "../../../redux/hooks";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { GoComment } from "react-icons/go";
+
+import DataContainer from "../../../components/PubDetails/DataContainer/DataContainer";
+import RatingActions from "../../../components/PubDetails/RatingActions/RatingActions";
 
 import { selectCurrentPub } from "../../../redux/slices/mainSlice/mainSelectors";
 
 import styles from "./PubDetails.module.scss";
+import { AiFillCaretRight } from "react-icons/ai";
+import { sendRating } from "../../../redux/slices/mainSlice/mainAsyncActions";
+import { home } from "../../../redux/slices/navigationSlice/navigationSlice";
 
 const PubDetails = () => {
+	const dispatch = useAppDispatch();
 	const pub = useAppSelector(selectCurrentPub);
-	const [isFullImage, setIsFullImage] = useState(true);
+	const [areBtnDisabled, setAreBtnDisabled] = useState(true);
+	const [shouldShowInput, setShouldShowInput] = useState(false);
+	const [isLike, setIsLike] = useState<boolean | null>(null);
+	const [comment, setComment] = useState("");
 
-	let icon = null;
+	useEffect(() => {
+		if (pub!.was_liked === null) {
+			setAreBtnDisabled(false);
+			setIsLike(null);
+		} else if (pub!.was_liked === true) {
+			setAreBtnDisabled(true);
+			setIsLike(true);
+		} else {
+			setAreBtnDisabled(true);
+			setIsLike(false);
+		}
+	}, [pub]);
 
-	if (pub!.was_liked) icon = <RatingRoundIcon isLike={true} lg />;
-	else if (pub!.was_liked === false)
-		icon = <RatingRoundIcon isLike={false} lg />;
+	const handleRatingClick = (isLike: boolean) => {
+		setIsLike(isLike);
+		setShouldShowInput(true);
+	};
+
+	const handleSendRating = () => {
+		dispatch(
+			sendRating({ pubId: pub!.id, comment: comment, isLike: isLike! }),
+		)
+			.unwrap()
+			.then((response) => {
+				alert("Avaliação enviada");
+				dispatch(home());
+			})
+			.catch((err) => {
+				alert("Ocorreu um erro ao enviar a sua availiação");
+				console.log(err);
+			});
+	};
 
 	return (
-		<div className={styles.details_page_container}>
-			{isFullImage ? (
-				<div
-					className={`${styles.details_data_container} ${styles.full_img}`}
-				>
-					<img src={pub!.file_url} alt="Arquivo da publicidade" />
+		<>
+			<div className={styles.details_page_container}>
+				<DataContainer />
 
-					<div className={styles.text_container}>
-						<h1>{pub!.title}</h1>
-						<h3>Cod. {pub!.id}</h3>
-						<BsChevronCompactDown
-							className={styles.expand_btn}
-							onClick={() => setIsFullImage(false)}
-						/>
+				<RatingActions
+					onClick={handleRatingClick}
+					btnsDisabled={areBtnDisabled}
+					wasLiked={isLike}
+				/>
+			</div>
+
+			{shouldShowInput && (
+				<div className={styles.input_wrapper}>
+					<GoComment className={styles.comment_icon} />
+
+					<div className={styles.input_container}>
+						<textarea
+							value={comment}
+							onChange={(event: any) =>
+								setComment(event.target.value)
+							}
+							placeholder="O seu comentário aqui..."
+						></textarea>
 					</div>
 
-					<div className={styles.right_top_icon_container}>
-						{icon}
-					</div>
-				</div>
-			) : (
-				<div
-					className={`${styles.details_data_container} ${styles.half_img}`}
-				>
-					<img
-						src={pub!.file_url}
-						alt="Arquivo da publicidade"
-						onClick={() => setIsFullImage(true)}
-					/>
-
-					<div className={styles.text_container}>
-						<h3>Cod. {pub!.id}</h3>
-						<h1>{pub!.title}</h1>
-						<p>{pub?.description}</p>
-					</div>
+					<button
+						className={styles.send_btn}
+						onClick={handleSendRating}
+					>
+						<AiFillCaretRight className={styles.send_icon} />
+					</button>
 				</div>
 			)}
-
-			<div
-				className={styles.rating_actions}
-				style={{ paddingBottom: !isFullImage ? "1.5rem" : "" }}
-			>
-				<button
-					className={`${styles.like_btn} ${
-						pub!.was_liked === false ? "" : styles.active_btn
-					}`}
-				>
-					<MdThumbUpAlt className={styles.like_icon} />
-					<span>Gostei</span>
-				</button>
-
-				<button
-					className={`${styles.dislike_btn} ${
-						pub!.was_liked === false ? styles.active_btn : ""
-					}`}
-				>
-					<MdThumbDown className={styles.dislike_icon} />
-					<span>
-						<strong>Não</strong> gostei
-					</span>
-				</button>
-			</div>
-		</div>
+		</>
 	);
 };
 
