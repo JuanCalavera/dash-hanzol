@@ -5,7 +5,6 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import PubListItem from "../../../components/Home/PubListItem/PubListemItem";
 import Slider from "../../../components/Home/Slider/Slider";
 
-import { fetchPubs } from "../../../redux/slices/mainSlice/mainAsyncActions";
 import { selectPubs } from "../../../redux/slices/mainSlice/mainSelectors";
 import { PubPiece } from "../../../redux/slices/mainSlice/mainInterfaces";
 import { emptyForm } from "../../../redux/slices/pubRequestSlice/pubRequestSlice";
@@ -19,10 +18,6 @@ const Home = () => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
 	const pubs = useAppSelector(selectPubs);
 	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		dispatch(fetchPubs());
-	}, []);
 
 	useEffect(() => {
 		setHighLights(pubs.slice(0, 5));

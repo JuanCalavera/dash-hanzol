@@ -9,6 +9,12 @@ export const mainSlice = createSlice({
 		selectPub: (state, action) => {
 			state.currentPubPiece = action.payload;
 		},
+		initLoad: (state) => {
+			state.isAppLoading = true;
+		},
+		endLoad: (state) => {
+			state.isAppLoading = false;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -26,6 +32,6 @@ export const mainSlice = createSlice({
 	},
 });
 
-export const { selectPub } = mainSlice.actions;
+export const { selectPub, initLoad, endLoad } = mainSlice.actions;
 
 export default mainSlice.reducer;

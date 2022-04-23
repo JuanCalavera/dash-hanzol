@@ -1,6 +1,7 @@
 export interface MainState {
 	pubPieces: PubPiece[];
 	currentPubPiece: PubPiece | null;
+	isAppLoading: boolean;
 }
 
 export interface PubPiece {
