@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 
 import logo from "../../../assets/logo-black.png";
 import { useAppDispatch } from "../../../redux/hooks";
@@ -10,6 +11,7 @@ import styles from "./Login.module.scss";
 const Login = () => {
 	const [cnpj, setCnpj] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 	const dispatch = useAppDispatch();
 
 	const handleCnpjChange = (value: string) => {
@@ -21,7 +23,11 @@ const Login = () => {
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
 
-		dispatch(login({ cnpj, password }));
+		setIsLoading(true);
+
+		dispatch(login({ cnpj, password }))
+			.unwrap()
+			.catch(() => setIsLoading(false));
 	};
 
 	return (
@@ -58,7 +64,13 @@ const Login = () => {
 					<span>Esqueci a senha</span>
 				</div>
 
-				<button className={styles.submit_btn}>Entrar</button>
+				<button className={styles.submit_btn} disabled={isLoading}>
+					{isLoading ? (
+						<TailSpin color="black" height={18} width={28} />
+					) : (
+						"Entrar"
+					)}
+				</button>
 
 				<div className={styles.to_register_section}>
 					<div className={styles.text_container}>

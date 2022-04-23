@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "./redux/hooks";
 
 import AuthModule from "./pages/Auth/AuthModule";
 import MainModule from "./pages/MainModule/MainModule";
+import LoadingScreen from "./pages/LoadingScreen/LoadingScreen";
 
 import { getCsrfToken } from "./redux/slices/authSlice/authAsyncActions";
 import { selectToken } from "./redux/slices/authSlice/authSelectors";
@@ -12,7 +13,6 @@ import { endLoad, initLoad } from "./redux/slices/mainSlice/mainSlice";
 import { fetchPubs } from "./redux/slices/mainSlice/mainAsyncActions";
 
 import "./App.css";
-import LoadingScreen from "./pages/LoadingScreen/LoadingScreen";
 
 function App() {
 	const token = useAppSelector(selectToken);
@@ -30,8 +30,9 @@ function App() {
 			dispatch(endLoad());
 		};
 
-		fetchAppData();
-	}, [dispatch]);
+		if (token) fetchAppData();
+		else dispatch(endLoad());
+	}, [dispatch, token]);
 
 	if (isLoading) content = <LoadingScreen />;
 	else if (token) content = <MainModule />;

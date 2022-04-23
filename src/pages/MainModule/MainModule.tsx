@@ -14,18 +14,22 @@ import {
 } from "../../redux/slices/navigationSlice/navigationSlice";
 
 import "./MainModule.css";
+import { selectLoading } from "../../redux/slices/mainSlice/mainSelectors";
+
+let timer: any = null;
 
 const MainModule = () => {
-	const currentScreen = useAppSelector(selectCurrentScreen);
-	const transitionTypes = useAppSelector(selectTransitionType);
-	const nodeRef = useRef<any>(null);
 	const [screen, setScreen] = useState(ROUTES.main.home.name);
 	const [change, setChange] = useState(0);
 	const [screenContent, setScreenContent] = useState<ReactElement>(<Home />);
 	const [currentTransitionType, setCurrentTransitionType] = useState("in");
+	const isAppLoading = useAppSelector(selectLoading);
+	const transitionTypes = useAppSelector(selectTransitionType);
+	const currentScreen = useAppSelector(selectCurrentScreen);
+	const nodeRef = useRef<any>(null);
 
 	useEffect(() => {
-		if (screen !== currentScreen) {
+		if (screen !== currentScreen && !isAppLoading) {
 			let content: null | ReactElement = null;
 
 			switch (currentScreen.name) {
@@ -48,11 +52,15 @@ const MainModule = () => {
 			setScreen(currentScreen);
 			setChange((prevState) => ++prevState);
 			setScreenContent(content);
-			setTimeout(() => {
+			timer = setTimeout(() => {
 				setCurrentTransitionType(transitionTypes);
 			}, 600);
 		}
-	}, [currentScreen]);
+
+		return () => {
+			clearTimeout(timer);
+		};
+	}, [currentScreen, isAppLoading]);
 
 	return (
 		<SwitchTransition mode="out-in">

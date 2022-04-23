@@ -30,8 +30,6 @@ export const getCsrfToken = createAsyncThunk(
 				BASE_URL + "sanctum/csrf-cookie",
 			);
 
-			console.log(response.data);
-
 			return response.data;
 		} catch (error: any) {
 			return thunk.rejectWithValue(error.response);
