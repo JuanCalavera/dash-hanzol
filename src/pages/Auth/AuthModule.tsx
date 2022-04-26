@@ -4,7 +4,6 @@ import { selectModule } from "../../redux/slices/authSlice/authSelectors";
 
 import Login from "./Login/Login";
 
-import styles from "./AuthModule.module.scss";
 import { ROUTES } from "../../routes/routes";
 
 const AuthModule = (props: any) => {

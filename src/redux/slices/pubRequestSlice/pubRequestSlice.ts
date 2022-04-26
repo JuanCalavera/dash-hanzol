@@ -83,7 +83,7 @@ export const pubRequestSlice = createSlice({
 		},
 		removeFile: (state, action: { type: string; payload: File }) => {
 			state.form.files = state.form.files.filter(
-				(file) => file != action.payload,
+				(file) => file !== action.payload,
 			);
 		},
 	},

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { IoCloseCircle } from "react-icons/io5";
 
 import StepLayout from "../../../../components/PubRequest/StepLayout/StepLayout";
+import FilesSliderSection from "../../../../components/PubRequest/FilesSliderSection/FilesSliderSection";
+import CloseBtnIcon from "../../../../components/PubRequest/CloseBtnIcon/CloseBtnIcon";
 
 import { navigate } from "../../../../redux/slices/navigationSlice/navigationSlice";
 import {
@@ -13,11 +14,9 @@ import {
 import { selectPubRequestForm } from "../../../../redux/slices/pubRequestSlice/pubRequestSelectors";
 
 import { ROUTES } from "../../../../routes/routes";
+import { isValidLink } from "../../../../utils/validate";
 
 import styles from "./Step3.module.scss";
-import FilesSliderSection from "../../../../components/PubRequest/FilesSliderSection/FilesSliderSection";
-import CloseBtnIcon from "../../../../components/PubRequest/CloseBtnIcon/CloseBtnIcon";
-import { isValidLink } from "../../../../utils/validate";
 
 const Step3 = () => {
 	const form = useAppSelector(selectPubRequestForm);

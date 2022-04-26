@@ -1,6 +1,5 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement } from "react";
 import { BsCaretRight } from "react-icons/bs";
-import { BiCaretRight } from "react-icons/bi";
 
 import styles from "./StepLayout.module.scss";
 

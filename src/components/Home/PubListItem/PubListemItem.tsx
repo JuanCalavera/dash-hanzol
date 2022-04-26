@@ -1,5 +1,4 @@
 import React from "react";
-import { AiFillDislike, AiFillLike } from "react-icons/ai";
 import { MdOutlineMoreVert } from "react-icons/md";
 import { useAppDispatch } from "../../../redux/hooks";
 
