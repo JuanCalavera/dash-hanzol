@@ -4,7 +4,7 @@ import { TailSpin } from "react-loader-spinner";
 import logo from "../../../assets/logo-black.png";
 import { useAppDispatch } from "../../../redux/hooks";
 import { login } from "../../../redux/slices/authSlice/authAsyncActions";
-import { cnpjPreProcessor } from "../../../utils/validate";
+import { cnpjPreProcessor, isValidCnpj } from "../../../utils/validate";
 
 import styles from "./Login.module.scss";
 
@@ -25,9 +25,18 @@ const Login = () => {
 
 		setIsLoading(true);
 
+		if (!isValidCnpj(cnpj)) {
+			alert("Cnpj inválido");
+			setIsLoading(false);
+			return;
+		}
+
 		dispatch(login({ cnpj, password }))
 			.unwrap()
-			.catch(() => setIsLoading(false));
+			.catch(() => {
+				alert("Credenciais incorretas");
+				setIsLoading(false);
+			});
 	};
 
 	return (
