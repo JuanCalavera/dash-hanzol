@@ -1,8 +1,8 @@
 import axios from "axios";
 import cookieCutter from "cookie-cutter";
 
-export const BASE_URL = "https://dash-api-dev.herokuapp.com/";
-// export const BASE_URL = "http://localhost:8000/";
+// export const BASE_URL = "https://dash-api-dev.herokuapp.com/";
+export const BASE_URL = "http://localhost:8000/";
 export const API_URL = BASE_URL + "api/";
 
 const axiosCreate = async () => {

@@ -5,6 +5,9 @@ import { selectModule } from "../../redux/slices/authSlice/authSelectors";
 import Login from "./Login/Login";
 
 import { ROUTES } from "../../routes/routes";
+import Home from "../MainModule/Home/Home";
+import Requests from "../MainModule/Requests/Requests";
+import Budgets from "../MainModule/Budgets/Budgets";
 
 const AuthModule = (props: any) => {
 	const module = useAppSelector(selectModule);
@@ -12,7 +15,7 @@ const AuthModule = (props: any) => {
 	switch (module) {
 		default:
 		case ROUTES.auth.login:
-			return <Login />;
+			return <Budgets/>;
 	}
 };
 

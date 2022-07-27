@@ -1,0 +1,109 @@
+@import "../../constants/variables";
+
+.list_background {
+    background-color: $blackBackgroundListColor;
+    color: #fff;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.column_content {
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.first_content {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.second_content {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.see_answer {
+    color: yellow;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin-right: 10px;
+}
+
+.see_answer p {
+    margin-top: 175px;
+}
+
+.top_cod {
+    color: #51535c;
+    text-align: end;
+}
+
+.gray_color {
+    color: #51535c;
+}
+
+.green_color {
+    color: greenyellow;
+}
+
+.total {
+    @extend .green_color;
+    margin-top: 40px;
+}
+
+.image_border_size {
+    width: 100%;
+    height: auto;
+    border: 1px solid #666973;
+}
+
+.container_content {
+    margin: 0px 20px 0px 20px;
+}
+
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+}
+.download_file_icon {
+    color: #fff;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.button_border {
+    background-color: $blackBackgroundListColor;
+    border: 1px solid #92d794;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 7px;
+}
+
+.button_border_approved {
+    background-color: #92d794;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 7px 15px 7px 15px;
+    border-radius: 7px;
+}
+
+.button_border_canceled {
+    background-color: #ff6600;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 7px 15px 7px 15px;
+    border-radius: 7px;
+}
+
+.see_project {
+    color: #fff;
+    text-decoration: underline;
+}

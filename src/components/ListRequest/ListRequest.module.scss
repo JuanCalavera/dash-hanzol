@@ -1,0 +1,64 @@
+@import "../../constants/variables";
+
+.list_background{
+    background-color: $blackBackgroundListColor;
+    color: #fff;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.column_content{
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.first_content{
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.second_content{
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.see_answer{
+    color: yellow;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin-right: 10px;
+}
+
+.see_answer p{
+    margin-top: 175px;
+}
+
+.top_cod{
+    color: #51535c;
+    text-align: end;
+}
+
+.gray_color{
+    color: #51535c;
+}
+
+.green_color{
+    color: greenyellow;
+}
+
+.image_border_size{
+    width: 100%;
+    height: auto;
+    border: 1px solid #666973;
+}
+
+.container_content{
+    margin: 0px 20px 0px 20px;
+}
+
+.flex_between{
+    display: flex;
+    justify-content: space-between;
+}
