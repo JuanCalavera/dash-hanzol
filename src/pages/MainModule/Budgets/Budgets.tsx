@@ -5,7 +5,7 @@ import ListBudgets from "../../../components/ListBudgets/ListBudgets";
 
 const Budgets = () => {
     return <div>
-        <Header title="Minhas Solicitações" />
+        <Header title="Orçamentos recebidos" />
         <FilterList orderTitle="Mais Recentes" />
         <ListBudgets
             buttonText="Aprovar"

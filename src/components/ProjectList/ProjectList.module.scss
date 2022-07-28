@@ -1,0 +1,117 @@
+@import "../../constants/variables";
+
+.list_background {
+    background-color: $blackBackgroundListColor;
+    color: #fff;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.column_content {
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.column_progress_bars {
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.first_content {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.second_content {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.see_answer {
+    color: yellow;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin-right: 10px;
+}
+
+.see_answer p {
+    margin-top: 175px;
+}
+
+.top_cod {
+    color: #51535c;
+    text-align: end;
+}
+
+.gray_color {
+    color: #51535c;
+}
+
+.green_color {
+    color: greenyellow;
+}
+
+.total {
+    @extend .green_color;
+    font-size: 13px;
+}
+
+.image_border_size {
+    width: 100%;
+    height: auto;
+    border: 1px solid #666973;
+}
+
+.container_content {
+    margin: 0px 20px 0px 20px;
+}
+
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.bar {
+    background-color: #4d4d4d !important;
+    border-radius: 5px;
+    width: 100%;
+    height: 20px;
+}
+
+.status_progress {
+    color: #ecbc00;
+    margin-bottom: 10px;
+}
+
+.status_late {
+    color: #ff6600;
+    margin-bottom: 10px;
+}
+
+.base_status {
+    padding-bottom: 10px;
+}
+
+.bar_under {
+    background-color: #a6f5a6 !important;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.progress_label {
+    font-size: 12px;
+}
+
+.button_historic {
+    background-color: #ecbc00;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 7px;
+    padding: 10px 9px 10px 9px;
+}
