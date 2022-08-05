@@ -13,30 +13,33 @@ import { endLoad, initLoad } from "./redux/slices/mainSlice/mainSlice";
 import { fetchPubs } from "./redux/slices/mainSlice/mainAsyncActions";
 
 import "./App.css";
+import Requests from "./pages/MainModule/Requests/Requests";
 
 function App() {
-	const token = useAppSelector(selectToken);
-	const isLoading = useAppSelector(selectLoading);
-	const dispatch = useAppDispatch();
+	// const token = useAppSelector(selectToken);
+	// const isLoading = useAppSelector(selectLoading);
+	// const dispatch = useAppDispatch();
 
 	let content = null;
 
-	useEffect(() => {
-		const fetchAppData = async () => {
-			dispatch(initLoad());
-			await dispatch(getCsrfToken()).unwrap();
-			await dispatch(fetchAgencyData()).unwrap();
-			await dispatch(fetchPubs()).unwrap();
-			dispatch(endLoad());
-		};
+	// useEffect(() => {
+	// 	const fetchAppData = async () => {
+	// 		dispatch(initLoad());
+	// 		await dispatch(getCsrfToken()).unwrap();
+	// 		await dispatch(fetchAgencyData()).unwrap();
+	// 		await dispatch(fetchPubs()).unwrap();
+	// 		dispatch(endLoad());
+	// 	};
 
-		if (token) fetchAppData();
-		else dispatch(endLoad());
-	}, [dispatch, token]);
+	// 	if (token) fetchAppData();
+	// 	else dispatch(endLoad());
+	// }, [dispatch, token]);
 
-	if (isLoading) content = <LoadingScreen />;
-	else if (token) content = <MainModule />;
-	else content = <AuthModule />;
+	// if (isLoading) content = <LoadingScreen />;
+	// else if (token) content = <MainModule />;
+	// else content = <AuthModule />;
+
+	content = <Requests/>;
 
 	return <div className="App">{content}</div>;
 }
