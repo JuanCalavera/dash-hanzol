@@ -1,0 +1,40 @@
+.background_item{
+    background-color: #1d1f25;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.content{
+    margin: 20px 30px 20px 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.img {
+    vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.d_flex{
+    display: flex;
+}
+
+.background_icon_success{
+    background-color: #a6f5a6;
+    border-radius: 50%;
+    padding: 10px 10px 10px 10px;
+    margin: 20px 0px 20px 20px;
+    color: black;
+}
+
+.background_icon_fail{
+    background-color: #ff6600;
+    border-radius: 50%;
+    padding: 10px 10px 5px 10px;
+    margin: 20px 0px 20px 20px;
+    color: black;
+}
