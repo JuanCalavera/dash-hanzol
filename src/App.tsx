@@ -16,6 +16,7 @@ import "./App.css";
 import Requests from "./pages/MainModule/Requests/Requests";
 import Comments from "./pages/MainModule/Comments/Comments";
 import Profile from "./pages/MainModule/Profile/Profile";
+import Financial from "./pages/MainModule/Financial/Financial";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -41,7 +42,7 @@ function App() {
 	// else if (token) content = <MainModule />;
 	// else content = <AuthModule />;
 
-	content = <Profile/>;
+	content = <Financial/>;
 
 	return <div className="App">{content}</div>;
 }
