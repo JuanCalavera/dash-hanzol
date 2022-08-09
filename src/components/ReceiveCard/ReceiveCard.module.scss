@@ -1,0 +1,43 @@
+.horizontal_scroll{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 48%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+}
+
+.snaps_inline{
+    scroll-snap-type: mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.snaps_inline::-webkit-scrollbar{
+    display: none;
+}
+
+.snaps_inline > * {
+    scroll-snap-align: start;
+}
+
+.snaps_default > div {
+    border-radius: 0.3rem;
+    max-width: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment:local;
+    background-size: cover;
+    width: 150px;
+    height: 300px;
+}
+
+.snaps_square > div {
+    border-radius: 0.3rem;
+    max-width: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment:local;
+    background-size: cover;
+    width: 150px;
+    height: 150px;
+}

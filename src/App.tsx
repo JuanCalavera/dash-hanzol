@@ -13,10 +13,13 @@ import { endLoad, initLoad } from "./redux/slices/mainSlice/mainSlice";
 import { fetchPubs } from "./redux/slices/mainSlice/mainAsyncActions";
 
 import "./App.css";
+
+// pages:
 import Requests from "./pages/MainModule/Requests/Requests";
 import Comments from "./pages/MainModule/Comments/Comments";
 import Profile from "./pages/MainModule/Profile/Profile";
 import Financial from "./pages/MainModule/Financial/Financial";
+import ReceiveContent from "./pages/MainModule/ReceiveContent/ReceiveContent";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -42,7 +45,7 @@ function App() {
 	// else if (token) content = <MainModule />;
 	// else content = <AuthModule />;
 
-	content = <Financial/>;
+	content = <ReceiveContent/>;
 
 	return <div className="App">{content}</div>;
 }

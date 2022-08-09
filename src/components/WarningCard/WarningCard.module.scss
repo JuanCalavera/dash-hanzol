@@ -1,0 +1,40 @@
+.icon_like{
+    background-color: #a6f5a6;
+    padding: 2px 1px 1px 3px;
+    border-radius: 50px;
+    color: #000;
+    border-style: none;
+    width: 15%;
+}
+
+.icon_unlike{
+    padding-top: 10px;
+    background-color: orange;
+    padding: 4px 1px 0px 3px;
+    border-radius: 50px;
+    color: #000;
+    border-style: none;
+    width: 15%;
+}
+
+.icon_nonpress{
+    padding-top: 10px;
+    background-color: #f2c80e;
+    padding: 2px 0px 0px 2px;
+    border-radius: 50px;
+    color: #000;
+    border-style: none;
+    width: 15%;
+}
+
+.d_flex_justify_end{
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.line{
+    stroke:rgb(0,0,0);
+    stroke-width:5;
+}

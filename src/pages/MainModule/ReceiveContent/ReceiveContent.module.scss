@@ -1,0 +1,75 @@
+.d_flex_between{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_like{
+    background-color: #a6f5a6;
+    padding: 4px 5px 4px 5px;
+    border-radius: 50px;
+    border-color: #e6e6e6;
+    border-width: 8px;
+    border-style: solid;
+    margin-right: 15px;
+}
+
+.button_unlike{
+    background-color: orange;
+    padding: 4px 5px 4px 5px;
+    border-radius: 50px;
+    border-color: #e6e6e6;
+    border-width: 8px;
+    border-style: solid;
+    margin-right: 15px;
+}
+
+.button_no_comment{
+    background-color: #f2c80e;
+    padding: 4px 5px 4px 5px;
+    border-radius: 50px;
+    border-color: #e6e6e6;
+    border-width: 8px;
+    border-style: solid;
+}
+
+.container{
+    margin: 0px 20px 0px 20px;
+    color: white;
+}
+
+.line{
+    stroke:rgb(0,0,0);
+    stroke-width:5;
+}
+
+.position_line{
+    padding-top: 7px;
+}
+
+.margin_search{
+    margin: 6px;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+
+
+.d_flex_justify_end{
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.icon_unlike{
+    padding-top: 10px;
+    background-color: orange;
+    padding: 4px 1px 0px 3px;
+    border-radius: 50px;
+    color: #000;
+    border-style: none;
+    width: 15%;
+}
