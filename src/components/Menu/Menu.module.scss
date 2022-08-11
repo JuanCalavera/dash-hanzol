@@ -20,7 +20,7 @@
 
 .initial_animate {
     animation-name: appear;
-    animation-duration: 1.5s;
+    animation-duration: 0.5s;
 }
 
 @keyframes appear {
@@ -36,9 +36,9 @@
 
 .final_animate {
     animation-name: disappear;
-    animation-duration: 1.5s;
+    animation-duration: 0.5s;
     visibility: hidden;
-    transition-delay: 1.5s;
+    transition-delay: 0.5s;
 }
 
 @keyframes disappear {
