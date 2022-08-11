@@ -8,10 +8,11 @@ export interface CardHomeProps {
     title: string,
     subtitle: string,
     content: string,
-    status: string
+    status: string,
+    data: string
 }
 
-const CardHome = ({ imgUrl, alt, title, subtitle, status, content }: CardHomeProps) => {
+const CardHome = ({ imgUrl, alt, title, subtitle, status, content, data }: CardHomeProps) => {
     let icon;
 
     if (status === 'like') {
@@ -27,15 +28,17 @@ const CardHome = ({ imgUrl, alt, title, subtitle, status, content }: CardHomePro
         <img src={imgUrl} alt={alt} />
         <div className={styles.card}>
             <div className={styles.d_flex_between}>
-                <p><b>{title}</b><br />
-                    <small>{subtitle}</small>
-                </p>
+                <div>
+                    <p className={styles.title}><b>{title}</b></p>
+                    <p className={styles.subtitle}>{subtitle}</p>
+                </div>
                 <div className={styles.d_flex}>
                     {icon}
                     <BsThreeDotsVertical size={10} className={styles.icon_menu} />
                 </div>
             </div>
-            <p><small>{content}</small></p>
+            <p className={styles.content}>{content}</p>
+            <p className={styles.data}>{data}</p>
         </div>
     </div>
 }

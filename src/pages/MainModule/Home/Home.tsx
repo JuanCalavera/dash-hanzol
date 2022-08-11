@@ -104,6 +104,7 @@ const Home = () => {
 					imgUrl="https://sing-it.co.uk/wp-content/uploads/2020/11/Band-in-concrete-room-scaled.jpg"
 					alt="band"
 					content="cacilds vidis litro abertis. Aenean aliquam molestie leo, vitae iaculis nisl.Si num tem leite então bota uma pinga aí cumpadi!"
+					data="13/06/23"
 					status="like"
 
 				/>
@@ -113,6 +114,7 @@ const Home = () => {
 					imgUrl="https://sing-it.co.uk/wp-content/uploads/2020/11/Band-in-concrete-room-scaled.jpg"
 					alt="band"
 					content="cacilds vidis litro abertis. Aenean aliquam molestie leo, vitae iaculis nisl.Si num tem leite então bota uma pinga aí cumpadi!"
+					data="13/06/23"
 					status="unlike"
 
 				/>
