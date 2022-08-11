@@ -20,6 +20,7 @@ import Comments from "./pages/MainModule/Comments/Comments";
 import Profile from "./pages/MainModule/Profile/Profile";
 import Financial from "./pages/MainModule/Financial/Financial";
 import ReceiveContent from "./pages/MainModule/ReceiveContent/ReceiveContent";
+import Home from "./pages/MainModule/Home/Home";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -45,7 +46,7 @@ function App() {
 	// else if (token) content = <MainModule />;
 	// else content = <AuthModule />;
 
-	content = <ReceiveContent/>;
+	content = <Home/>;
 
 	return <div className="App">{content}</div>;
 }

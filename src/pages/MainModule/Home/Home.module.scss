@@ -32,3 +32,33 @@
 		z-index: 1000;
 	}
 }
+
+.menu_icon {
+	color: white;
+}
+
+.menu_notification {
+	color: white;
+	margin-top: 5px;
+}
+
+.header {
+	margin-top: 20px;
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.out {
+	width: 30%;
+	height: 200%;
+	position: absolute;
+	top: 0;
+	margin: 0;
+	z-index: 200;
+	right: 0;
+}
+
+.d_none {
+	display: none;
+}

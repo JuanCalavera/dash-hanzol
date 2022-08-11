@@ -1,0 +1,91 @@
+.display {
+    display: block;
+}
+
+.display_none {
+    display: none;
+}
+
+.menu {
+    background-color: #fff;
+    color: #000;
+    z-index: 100;
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    margin: 0;
+}
+
+.initial_animate {
+    animation-name: appear;
+    animation-duration: 1.5s;
+}
+
+@keyframes appear {
+    0% {
+        left: -265px;
+        top: 0px;
+    }
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+
+.final_animate {
+    animation-name: disappear;
+    animation-duration: 1.5s;
+    visibility: hidden;
+    transition-delay: 1.5s;
+}
+
+@keyframes disappear {
+    0% {
+        left: 0px;
+        top: 0px;
+    }
+    100% {
+        left: -265px;
+        top: 0px;
+    }
+}
+
+.menu_content {
+    margin: 50px 20px 0px 20px;
+}
+
+.menu_content_list {
+    margin: 10px 20px 0px 20px;
+}
+
+.img {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 5px;
+}
+
+.cnpj {
+    font-size: 10px;
+}
+
+.d_flex {
+    display: flex;
+}
+
+.social {
+    margin-top: 30px;
+    margin: 30px 20px 0px 20px;
+    justify-content: space-between;
+}
+
+.profile_content {
+    background-color: #d8ae00;
+    padding-top: 1px;
+    padding-bottom: 50px;
+}

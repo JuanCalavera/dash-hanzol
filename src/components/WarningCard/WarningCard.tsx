@@ -27,6 +27,8 @@ const WarningCard = ({ status, imgUrl }: WarningCard) => {
                 <line x1="25" y1="0" x2="0" y2="0" className={styles.line}></line>
             </svg>
         </div>;
+    } else if (status === 'null') {
+        icon = <div></div>;
     }
     return <div style={{ backgroundImage: `url(${image})` }}>
         <div className={styles.d_flex_justify_end}>
