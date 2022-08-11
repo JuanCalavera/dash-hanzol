@@ -47,7 +47,7 @@ function App() {
 	// else if (token) content = <MainModule />;
 	// else content = <AuthModule />;
 
-	content = <About/>;
+	content = <Home/>;
 
 	return <div className="App">{content}</div>;
 }

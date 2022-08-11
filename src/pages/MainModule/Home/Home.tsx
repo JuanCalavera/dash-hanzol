@@ -21,6 +21,9 @@ import ReceiveCard from "../../../components/ReceiveCard/ReceiveCard";
 import WarningCard from "../../../components/WarningCard/WarningCard";
 import CardHome from "../../../components/CardHome/CardHome";
 import Menu from "../../../components/Menu/Menu";
+import { RiMessage2Line } from "react-icons/ri";
+import { BsSearch } from "react-icons/bs";
+import { GoGraph } from "react-icons/go";
 
 const Home = () => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
@@ -113,11 +116,6 @@ const Home = () => {
 					status="unlike"
 
 				/>
-
-				{pubs.map((pub) => (
-					<PubListItem pub={pub} key={pub.id} />
-				))}
-
 				<div
 					className={styles.plus_btn_container}
 					onClick={openPubRequestForm}
@@ -125,6 +123,11 @@ const Home = () => {
 					<div className={styles.plus_btn_background}></div>
 					<AiFillPlusCircle className={styles.plus_btn} />
 				</div>
+			</div>
+			<div className={styles.bottom_menu}>
+				<RiMessage2Line size={30} />
+				<BsSearch size={30}/>
+				<GoGraph size={30}/>
 			</div>
 		</div>
 	);

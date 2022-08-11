@@ -62,3 +62,14 @@
 .d_none {
 	display: none;
 }
+
+.bottom_menu{
+	bottom: 0;
+	position: fixed;
+	background-color: #1a1a1a;
+	color: white;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	padding: 10px 40px 10px 40px;
+}
