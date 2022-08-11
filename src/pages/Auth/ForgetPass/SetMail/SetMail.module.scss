@@ -1,0 +1,44 @@
+.content{
+    margin: 10px 10px 10px 10px;
+    color: #fff;
+}
+
+.title{
+    text-align: center;
+    margin-top: 40px;
+    font-weight: bolder;
+}
+
+.input_text{
+    width: 100%;
+    color: #000;
+    border-style: none;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.danger_text{
+    color: #cf5200;
+    text-align: center;
+}
+
+.warning{
+    margin: 100% 50px 0 50px;
+    text-align: center;
+}
+
+.next {
+    color: #ecbc00;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.next > p {
+    color: #fff;
+    font-weight: bold;
+    margin-top: 10px;
+}

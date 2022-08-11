@@ -22,6 +22,8 @@ import Financial from "./pages/MainModule/Financial/Financial";
 import ReceiveContent from "./pages/MainModule/ReceiveContent/ReceiveContent";
 import Home from "./pages/MainModule/Home/Home";
 import About from "./pages/MainModule/About/About";
+import Start from "./pages/Auth/ForgetPass/Start/Start";
+import SetMail from "./pages/Auth/ForgetPass/SetMail/SetMail";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -47,7 +49,7 @@ function App() {
 	// else if (token) content = <MainModule />;
 	// else content = <AuthModule />;
 
-	content = <Home/>;
+	content = <SetMail/>;
 
 	return <div className="App">{content}</div>;
 }
