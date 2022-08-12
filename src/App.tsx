@@ -24,6 +24,7 @@ import Home from "./pages/MainModule/Home/Home";
 import About from "./pages/MainModule/About/About";
 import Start from "./pages/Auth/ForgetPass/Start/Start";
 import SetMail from "./pages/Auth/ForgetPass/SetMail/SetMail";
+import SetCode from "./pages/Auth/ForgetPass/SetCode/SetCode";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -49,7 +50,7 @@ function App() {
 	// else if (token) content = <MainModule />;
 	// else content = <AuthModule />;
 
-	content = <SetMail/>;
+	content = <SetCode/>;
 
 	return <div className="App">{content}</div>;
 }
