@@ -1,6 +1,6 @@
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import { RiArrowLeftSLine, RiLockUnlockFill } from 'react-icons/ri';
-import Header from '../../../../components/Header/Header';
+import Header from '../Header/Header';
 import styles from './Start.module.scss';
 
 const Start = () => {

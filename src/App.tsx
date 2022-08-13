@@ -22,9 +22,9 @@ import Financial from "./pages/MainModule/Financial/Financial";
 import ReceiveContent from "./pages/MainModule/ReceiveContent/ReceiveContent";
 import Home from "./pages/MainModule/Home/Home";
 import About from "./pages/MainModule/About/About";
-import Start from "./pages/Auth/ForgetPass/Start/Start";
-import SetMail from "./pages/Auth/ForgetPass/SetMail/SetMail";
-import SetCode from "./pages/Auth/ForgetPass/SetCode/SetCode";
+import SetCode from "./components/SetCode/SetCode";
+import ForgetPass from "./pages/Auth/ForgetPass/ForgetPass";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -49,10 +49,16 @@ function App() {
 	// if (isLoading) content = <LoadingScreen />;
 	// else if (token) content = <MainModule />;
 	// else content = <AuthModule />;
+	// <div className="App">{content}</div>;
 
-	content = <SetCode/>;
+	content = <SetCode />;
 
-	return <div className="App">{content}</div>;
+	return <BrowserRouter>
+		<Routes>
+			<Route path='/' element={<Home/>}/>
+			<Route path='/set-code' element={<SetCode/>}/>
+		</Routes>
+	</BrowserRouter>
 }
 
 export default App;

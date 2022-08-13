@@ -1,5 +1,5 @@
 import { BiRightArrow } from 'react-icons/bi';
-import Header from '../../../../components/Header/Header';
+import Header from '../Header/Header';
 import styles from './SetMail.module.scss';
 
 const SetMail = () => {
