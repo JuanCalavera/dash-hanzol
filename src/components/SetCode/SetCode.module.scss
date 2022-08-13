@@ -67,3 +67,15 @@
     font-weight: bold;
     margin-top: 10px;
 }
+
+.information > p {
+    color: green;
+}
+
+.information > p > small {
+    color: #fff;
+}
+
+.repass {
+    margin-bottom: 10px !important;
+}

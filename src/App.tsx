@@ -55,8 +55,15 @@ function App() {
 
 	return <BrowserRouter>
 		<Routes>
-			<Route path='/' element={<Home/>}/>
-			<Route path='/set-code' element={<SetCode/>}/>
+			<Route path='/' element={<Home />} />
+			<Route path='/set-code' element={<SetCode />} />
+			<Route path="/minhas-solicitacoes" element={<Requests />} />
+			<Route path="/comentarios" element={<Comments />} />
+			<Route path="/perfil" element={<Profile />} />
+			<Route path="/financeiro" element={<Financial />} />
+			<Route path="/recebido" element={<ReceiveContent />} />
+			<Route path="/sobre" element={<About />} />
+			<Route path="/esqueci-a-senha" element={<ForgetPass />} />
 		</Routes>
 	</BrowserRouter>
 }
