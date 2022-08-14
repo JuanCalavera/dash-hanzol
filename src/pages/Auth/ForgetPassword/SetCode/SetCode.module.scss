@@ -79,3 +79,14 @@
 .repass {
     margin-bottom: 10px !important;
 }
+
+.index{
+    z-index: 200;
+    animation-name: show;
+    animation-duration: 0.5s;
+}
+
+@keyframes show{
+    0% {right: 0;}
+    100% {right: 100px;}
+}

@@ -3,7 +3,7 @@ import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
 import { BsCheck } from 'react-icons/bs';
-import Header from '../Header/Header';
+import Header from '../../../../components/Header/Header';
 import styles from './SetCode.module.scss';
 
 const SetCode = () => {
@@ -120,7 +120,8 @@ const SetCode = () => {
                 {hasMoreEigth && <p><small>Tem mais de 8 caracteres</small><BsCheck size={20} /></p>}
             </div>
         </div>
-        <div onClick={confirmPass} className={styles.next}>
+        <div onClick={() => {
+        }} className={styles.next}>
             <p>Concluir</p>
             <BiRightArrow size={40} />
         </div>

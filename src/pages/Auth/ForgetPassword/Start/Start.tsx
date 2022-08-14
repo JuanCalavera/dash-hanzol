@@ -1,12 +1,19 @@
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import { RiArrowLeftSLine, RiLockUnlockFill } from 'react-icons/ri';
-import Header from '../Header/Header';
+import { useNavigate } from 'react-router-dom';
+import Header from '../../../../components/Header/Header';
+import { navigate } from '../../../../redux/slices/navigationSlice/navigationSlice';
 import styles from './Start.module.scss';
 
 const Start = () => {
+    const navigate = useNavigate();
+    function navigatePages(){
+        navigate('/esqueci-a-senha-email');
+    }
+    
     return <div>
         <Header
-            title='Criar uma nova senha'
+            title='Criar Nova Senha'
         />
         <div className={styles.container}>
             <div className={styles.base}>
@@ -21,7 +28,7 @@ const Start = () => {
                 </p>
             </div>
         </div>
-        <div className={styles.next}>
+        <div onClick={navigatePages} className={styles.next}>
             <p>Avançar</p>
             <BiRightArrow size={40} />
         </div>

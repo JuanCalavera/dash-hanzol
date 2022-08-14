@@ -22,9 +22,10 @@ import Financial from "./pages/MainModule/Financial/Financial";
 import ReceiveContent from "./pages/MainModule/ReceiveContent/ReceiveContent";
 import Home from "./pages/MainModule/Home/Home";
 import About from "./pages/MainModule/About/About";
-import SetCode from "./components/SetCode/SetCode";
-import ForgetPass from "./pages/Auth/ForgetPass/ForgetPass";
+import SetCode from "./pages/Auth/ForgetPassword/SetCode/SetCode";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Start from "./pages/Auth/ForgetPassword/Start/Start";
+import SetMail from "./pages/Auth/ForgetPassword/SetMail/SetMail";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -51,19 +52,18 @@ function App() {
 	// else content = <AuthModule />;
 	// <div className="App">{content}</div>;
 
-	content = <SetCode />;
-
 	return <BrowserRouter>
 		<Routes>
 			<Route path='/' element={<Home />} />
-			<Route path='/set-code' element={<SetCode />} />
 			<Route path="/minhas-solicitacoes" element={<Requests />} />
 			<Route path="/comentarios" element={<Comments />} />
 			<Route path="/perfil" element={<Profile />} />
 			<Route path="/financeiro" element={<Financial />} />
 			<Route path="/recebido" element={<ReceiveContent />} />
 			<Route path="/sobre" element={<About />} />
-			<Route path="/esqueci-a-senha" element={<ForgetPass />} />
+			<Route path="/esqueci-a-senha" element={<Start/>} />
+			<Route path="/esqueci-a-senha-email" element={<SetMail/>} />
+			<Route path="/esqueci-a-senha-codigo" element={<SetCode/>} />
 		</Routes>
 	</BrowserRouter>
 }
