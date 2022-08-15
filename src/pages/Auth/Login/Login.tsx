@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TailSpin } from "react-loader-spinner";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../../../assets/logo-black.png";
 import { useAppDispatch } from "../../../redux/hooks";
@@ -13,6 +14,8 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const dispatch = useAppDispatch();
+
+	const navigate = useNavigate();
 
 	const handleCnpjChange = (value: string) => {
 		const cnpj = cnpjPreProcessor(value);
@@ -39,10 +42,14 @@ const Login = () => {
 			});
 	};
 
+	document.body.style.background = "white";
+
 	return (
 		<form autoComplete="new-password" onSubmit={handleSubmit}>
 			<div className={styles.login_container}>
-				<div className={styles.logo_container}>
+				<div className={styles.logo_container} onClick={() => {
+					navigate('/home');
+				}}>
 					<img src={logo} alt="Logo" />
 					<h1>
 						Bem vindo ao <strong>Dash</strong>
@@ -70,7 +77,9 @@ const Login = () => {
 						value={password}
 						onChange={(event) => setPassword(event.target.value)}
 					/>
-					<span>Esqueci a senha</span>
+					<Link to="/esqueci-a-senha">
+						<span>Esqueci a senha</span>
+					</Link>
 				</div>
 
 				<button className={styles.submit_btn} disabled={isLoading}>

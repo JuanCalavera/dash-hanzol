@@ -5,8 +5,9 @@ import { RiMoneyDollarBoxFill, RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 
 import styles from './Menu.module.scss';
+import { Link } from "react-router-dom";
 
-export interface MenuProps{
+export interface MenuProps {
     imgUrl: string,
     alt: string,
     title: string,
@@ -14,12 +15,12 @@ export interface MenuProps{
     appear: boolean
 }
 
-const Menu = ({imgUrl, alt, title, cnpj, appear}:MenuProps) => {
+const Menu = ({ imgUrl, alt, title, cnpj, appear }: MenuProps) => {
     let toggle;
 
-    if(appear){
+    if (appear) {
         toggle = styles.menu + ' ' + styles.display + ' ' + styles.initial_animate;
-    } else if (!appear){
+    } else if (!appear) {
         toggle = styles.menu + ' ' + styles.final_animate;
     }
 
@@ -36,21 +37,37 @@ const Menu = ({imgUrl, alt, title, cnpj, appear}:MenuProps) => {
         </div>
         <div className={styles.menu_content_list}>
             <p><b>Criativo</b></p>
-            <p><IoAddCircleSharp size={15} /> Minhas solicitações</p>
-            <p><RiMoneyDollarBoxFill size={15} /> Minhas solicitações</p>
-            <p><AiOutlineFundProjectionScreen size={15} /> Meus Projetos</p>
-            <p><AiFillCamera size={15} /> Conteúdo recebido</p>
-            <p><AiFillLike size={15} /> Avaliações/Comentários</p>
+            <Link to={'/minhas-solicitacoes'}>
+                <p><IoAddCircleSharp size={15} /> Minhas solicitações</p>
+            </Link>
+            <Link to={'/orcamentos-recebidos'}>
+                <p><RiMoneyDollarBoxFill size={15} /> Orçamentos recebidos</p>
+            </Link>
+            <Link to={'/meus-projetos'}>
+                <p><AiOutlineFundProjectionScreen size={15} /> Meus Projetos</p>
+            </Link>
+            <Link to={'/conteudo-recebido'}>
+                <p><AiFillCamera size={15} /> Conteúdo recebido</p>
+            </Link>
+            <Link to={'/comentarios'}>
+                <p><AiFillLike size={15} /> Avaliações/Comentários</p>
+            </Link>
 
             <br />
 
             <p><b>Cadastro/finaceiro</b></p>
-            <p><IoInformationCircle size={15} /> Meu cadastro</p>
-            <p><AiOutlineBarcode size={15} /> Minhas solicitações</p>
+            <Link to={'/perfil'}>
+                <p><IoInformationCircle size={15} /> Meu cadastro</p>
+            </Link>
+            <Link to={'/financeiro'}>
+                <p><AiOutlineBarcode size={15} /> Financeiro</p>
+            </Link>
 
             <hr />
 
-            <p><AiOutlineQuestionCircle size={15} /> Sobre o Dash</p>
+            <Link to={'/sobre'}>
+                <p><AiOutlineQuestionCircle size={15} /> Sobre o Dash</p>
+            </Link>
             <p><BiExit size={15} /> Sair/Log off</p>
             <div className={styles.d_flex + ' ' + styles.social}>
                 <BsInstagram size={30} />
@@ -59,7 +76,7 @@ const Menu = ({imgUrl, alt, title, cnpj, appear}:MenuProps) => {
             </div>
         </div>
     </div>
-    ;
+        ;
 }
 
 export default Menu;

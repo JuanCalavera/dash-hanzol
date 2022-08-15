@@ -15,7 +15,7 @@ import logo from "../../../assets/logo.png";
 import { ROUTES } from "../../../routes/routes";
 
 import styles from "./Home.module.scss";
-import { BiBarcode, BiExit, BiMenu } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import ReceiveCard from "../../../components/ReceiveCard/ReceiveCard";
 import WarningCard from "../../../components/WarningCard/WarningCard";

@@ -18,6 +18,11 @@
     margin: 0;
 }
 
+.menu_content_list > a{
+    color: #000;
+    text-decoration: none;
+}
+
 .initial_animate {
     animation-name: appear;
     animation-duration: 0.5s;

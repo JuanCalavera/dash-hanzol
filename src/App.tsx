@@ -26,6 +26,9 @@ import SetCode from "./pages/Auth/ForgetPassword/SetCode/SetCode";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Start from "./pages/Auth/ForgetPassword/Start/Start";
 import SetMail from "./pages/Auth/ForgetPassword/SetMail/SetMail";
+import Projects from "./pages/MainModule/Projects/Projects";
+import Budgets from "./pages/MainModule/Budgets/Budgets";
+import Login from "./pages/Auth/Login/Login";
 
 function App() {
 	// const token = useAppSelector(selectToken);
@@ -54,16 +57,20 @@ function App() {
 
 	return <BrowserRouter>
 		<Routes>
-			<Route path='/' element={<Home />} />
+			<Route path='/' element={<LoadingScreen />} />
+			<Route path='/login' element={<Login />} />
+			<Route path='/home' element={<Home />} />
 			<Route path="/minhas-solicitacoes" element={<Requests />} />
 			<Route path="/comentarios" element={<Comments />} />
 			<Route path="/perfil" element={<Profile />} />
 			<Route path="/financeiro" element={<Financial />} />
-			<Route path="/recebido" element={<ReceiveContent />} />
+			<Route path="/conteudo-recebido" element={<ReceiveContent />} />
 			<Route path="/sobre" element={<About />} />
 			<Route path="/esqueci-a-senha" element={<Start/>} />
 			<Route path="/esqueci-a-senha-email" element={<SetMail/>} />
 			<Route path="/esqueci-a-senha-codigo" element={<SetCode/>} />
+			<Route path="/meus-projetos" element={<Projects/>} />
+			<Route path="/orcamentos-recebidos" element={<Budgets/>} />
 		</Routes>
 	</BrowserRouter>
 }
