@@ -31,6 +31,7 @@ import Budgets from "./pages/MainModule/Budgets/Budgets";
 import Login from "./pages/Auth/Login/Login";
 
 function App() {
+	document.title = "Dash"
 	// const token = useAppSelector(selectToken);
 	// const isLoading = useAppSelector(selectLoading);
 	// const dispatch = useAppDispatch();
