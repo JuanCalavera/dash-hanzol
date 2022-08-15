@@ -10,7 +10,7 @@ const Header = ({ title }: HeaderProps) => {
     const navigate = useNavigate();
 
     function handleBackClick(){
-        navigate('/');
+        navigate('/home');
     }
 
     document.body.style.background = "black";
