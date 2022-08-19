@@ -6,7 +6,9 @@ import ListBudgets from "../../../components/ListBudgets/ListBudgets";
 const Budgets = () => {
     return <div>
         <Header title="Orçamentos recebidos" />
-        <FilterList orderTitle="Mais Recentes" />
+        <FilterList
+        onClick={() => {}}
+        orderTitle="Mais Recentes" />
         <ListBudgets
             buttonText="Aprovar"
             receiveText="03/04/22 - 20:58h"

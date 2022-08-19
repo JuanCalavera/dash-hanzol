@@ -2,17 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { AiFillPlusCircle } from "react-icons/ai";
 
-import PubListItem from "../../../components/Home/PubListItem/PubListemItem";
 import Slider from "../../../components/Home/Slider/Slider";
 
 import { selectPubs } from "../../../redux/slices/mainSlice/mainSelectors";
 import { PubPiece } from "../../../redux/slices/mainSlice/mainInterfaces";
-import { emptyForm } from "../../../redux/slices/pubRequestSlice/pubRequestSlice";
-import { navigate } from "../../../redux/slices/navigationSlice/navigationSlice";
 
 import logo from "../../../assets/logo.png";
-
-import { ROUTES } from "../../../routes/routes";
 
 import styles from "./Home.module.scss";
 import { BiMenu } from "react-icons/bi";
@@ -24,25 +19,44 @@ import Menu from "../../../components/Menu/Menu";
 import { RiMessage2Line } from "react-icons/ri";
 import { BsSearch } from "react-icons/bs";
 import { GoGraph } from "react-icons/go";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
 	const pubs = useAppSelector(selectPubs);
 	const dispatch = useAppDispatch();
+	const [getItem, setGetItem] = useState([]);
+	const [agencySingle, setAgency] = useState<any>();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		setHighLights(pubs.slice(0, 5));
 	}, [pubs]);
 
-	const openPubRequestForm = () => {
-		dispatch(emptyForm());
-		dispatch(
-			navigate({
-				to: ROUTES.main.newPubRequest.step1,
-				from: ROUTES.main.home,
-			}),
-		);
-	};
+	useEffect(() => {
+		axios.get('http://127.0.0.1:8000/api/agency/' + localStorage['agency'], {
+			headers: {
+				'Authorization': localStorage['token']
+			}
+		}).then((res) => {
+			setAgency(res.data);
+		}).catch(() => {
+			navigate('/login');
+		});
+
+
+		axios.get('http://127.0.0.1:8000/api/pub-pieces', {
+			headers: {
+				'Authorization': localStorage['token']
+			}
+		}).then((response) => {
+			setGetItem(response.data);
+		})
+			.catch(() => {
+				navigate('/login');
+			});
+	}, []);
 
 	let [toggle, setToggle] = useState<boolean>(false);
 	let [classDiv, setClassDiv] = useState<string>(styles.out + ' ' + styles.d_none);
@@ -58,15 +72,17 @@ const Home = () => {
 	}
 
 	document.body.style.background = "black";
+
+
 	return (
 		<div>
-			<Menu
-				imgUrl="https://logosandtypes.com/wp-content/uploads/2020/06/carrefour.png"
+			{agencySingle && <Menu
+				imgUrl={agencySingle.agency.icon_path}
 				alt="brand"
-				title="Carrefour RJ"
-				cnpj="44339734837"
+				title={agencySingle.agency.name}
+				cnpj={agencySingle.user}
 				appear={toggle}
-			/>
+			/>}
 			<div className={classDiv} onClick={() => ToggleInvisible(toggle)}></div>
 			<div className={styles.home_container}>
 				<div className={styles.header}>
@@ -77,50 +93,39 @@ const Home = () => {
 					<IoNotifications size={20} className={styles.menu_notification} />
 				</div>
 
+
+
 				<ReceiveCard type="default">
-					<WarningCard
-						status='null'
-						imgUrl="https://sm.ign.com/t/ign_br/screenshot/default/sandman-conheca-elenco-serie-netflix_wswg.1200.jpg"
-					/>
-					<WarningCard
-						status='null'
-						imgUrl="https://sm.ign.com/t/ign_br/screenshot/default/sandman-conheca-elenco-serie-netflix_wswg.1200.jpg"
-					/>
-					<WarningCard
-						status='null'
-						imgUrl="https://sm.ign.com/t/ign_br/screenshot/default/sandman-conheca-elenco-serie-netflix_wswg.1200.jpg"
-					/>
-					<WarningCard
-						status='null'
-						imgUrl="https://sm.ign.com/t/ign_br/screenshot/default/sandman-conheca-elenco-serie-netflix_wswg.1200.jpg"
-					/>
+					{getItem?.map((gets: any) => {
+						return (
+							<WarningCard
+								status='null'
+								imgUrl={gets.file_url}
+							/>
+						);
+					})}
 				</ReceiveCard>
 
 				<Slider highLights={highLights} />
 
-				<CardHome
-					title='Mussum Ipsum'
-					subtitle="COD. 8000"
-					imgUrl="https://sing-it.co.uk/wp-content/uploads/2020/11/Band-in-concrete-room-scaled.jpg"
-					alt="band"
-					content="cacilds vidis litro abertis. Aenean aliquam molestie leo, vitae iaculis nisl.Si num tem leite então bota uma pinga aí cumpadi!"
-					data="13/06/23"
-					status="like"
+				{getItem?.map((gets: any, key: number) => {
 
-				/>
-				<CardHome
-					title='Mussum Ipsum'
-					subtitle="COD. 8000"
-					imgUrl="https://sing-it.co.uk/wp-content/uploads/2020/11/Band-in-concrete-room-scaled.jpg"
-					alt="band"
-					content="cacilds vidis litro abertis. Aenean aliquam molestie leo, vitae iaculis nisl.Si num tem leite então bota uma pinga aí cumpadi!"
-					data="13/06/23"
-					status="unlike"
+					return (
+						<CardHome
+							title={gets.title}
+							subtitle={'COD.' + gets.id}
+							imgUrl={gets.file_url}
+							alt={gets.title}
+							content={gets.description}
+							data={gets.created}
+							status={gets.was_liked ? 'like' : 'unlike'}
 
-				/>
+						/>
+					);
+				})}
 				<div
 					className={styles.plus_btn_container}
-					onClick={openPubRequestForm}
+				// onClick={openPubRequestForm}
 				>
 					<div className={styles.plus_btn_background}></div>
 					<AiFillPlusCircle className={styles.plus_btn} />
@@ -128,11 +133,12 @@ const Home = () => {
 			</div>
 			<div className={styles.bottom_menu}>
 				<RiMessage2Line size={30} />
-				<BsSearch size={30}/>
-				<GoGraph size={30}/>
+				<BsSearch size={30} />
+				<GoGraph size={30} />
 			</div>
 		</div>
 	);
 };
 
 export default Home;
+

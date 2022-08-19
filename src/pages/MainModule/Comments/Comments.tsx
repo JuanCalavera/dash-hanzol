@@ -6,7 +6,9 @@ import styles from "./Comments.module.scss";
 const Comments = () => {
     return <div>
         <Header title='Avaliações/comentários' />
-        <FilterList orderTitle="Mais recentes" />
+        <FilterList
+        onClick={() => {}}
+        orderTitle="Mais recentes" />
         <ContentComments
             title="Mascote para Criação"
             subtitle="15/07/2022 Recuperação"

@@ -6,7 +6,9 @@ import ProjectList from "../../../components/ProjectList/ProjectList";
 const Projects = () => {
     return <div>
         <Header title="Meus Projetos" />
-        <FilterList orderTitle="Valores Maiores" />
+        <FilterList
+        onClick={() => {}}
+        orderTitle="Valores Maiores" />
         <ProjectList
         dateTime="05/05/22 - 18:00h"
         title="Redes Sociais"

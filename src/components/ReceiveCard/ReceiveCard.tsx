@@ -3,7 +3,7 @@ import { ReactChild, ReactChildren } from 'react';
 import styles from './ReceiveCard.module.scss';
 
 export interface ReceiveCardProps{
-    children: ReactChildren | ReactChildren[] | ReactChild | ReactChild[],
+    children: ReactChildren | ReactChild | ReactChildren[] | ReactChild[],
     type: string
 }
 

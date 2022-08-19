@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,6 +23,25 @@ const Login = () => {
 
 		setCnpj(cnpj);
 	};
+
+	function submitLogin() {
+		let data = {
+			cnpj: cnpj,
+			password: password
+		};
+
+		axios.post('http://127.0.0.1:8000/api/login', data).then((response) => {
+
+			if (response.data.token_type === 'Bearer' && response.data.token !== 'undefined') {
+				localStorage['token'] = response.data.token_type + ' ' + response.data.token;
+				localStorage['agency'] = response.data.user.agency_id;
+				navigate('/Home');
+			}
+
+		});
+
+
+	}
 
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
@@ -82,7 +102,7 @@ const Login = () => {
 					</Link>
 				</div>
 
-				<button className={styles.submit_btn} disabled={isLoading}>
+				<button onClick={submitLogin} className={styles.submit_btn} disabled={isLoading}>
 					{isLoading ? (
 						<TailSpin color="black" height={18} width={28} />
 					) : (
