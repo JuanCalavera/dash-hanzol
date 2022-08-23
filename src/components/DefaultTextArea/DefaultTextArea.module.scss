@@ -1,0 +1,20 @@
+.default_text_area {
+    width: 100%;
+    border-radius: 20px;
+    color: gray;
+    background-color: #fff;
+    padding: 1rem 1rem 0.7rem 1rem;
+    border: none;
+    margin: 20px 0px 20px 0px;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+        box-shadow: 0 0 0 1000px #000 inset;
+        color: gray;
+    }
+}
+
+.default_label {
+    color: #fff;
+}

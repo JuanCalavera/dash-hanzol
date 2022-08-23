@@ -40,30 +40,26 @@ const Requests = () => {
          />
 
         {listsItem?.map((list: any, key: number) => {
+            let image = "";
+            if(list.reference_link != undefined){
+                image = list.reference_link;
+            }
+            if(list.reference_file != undefined){
+                image = list.reference_file;
+            }
             return (
                 <ListRequest
-                    dateAndHour={list.deliver_date}
-                    cod={'COD.' + list.id}
-                    title={list.description}
-                    subtitle={list.size}
-                    description={list.exhibition_description}
+                    dateAndHour={list.pubRequest.deliver_date}
+                    cod={'COD.' + list.pubRequest.id}
+                    title={list.pubRequest.description}
+                    subtitle={list.pubRequest.size}
+                    description={list.pubRequest.exhibition_description}
                     status="18h depois"
-                    image=""
+                    image={image}
                     alt="artist"
                 />
             );
         })}
-
-        {/* <ListRequest
-            dateAndHour="05/05/22 - 23:58h"
-            cod="COD: 4400GB"
-            title="Anúncio em Jornal"
-            subtitle="1/3 da página"
-            description="Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss, é um leite divinis..."
-            status="18h depois"
-            image="https://akns-images.eonline.com/eol_images/Entire_Site/2020111/rs_1200x1200-201201123725-1200-Elliot-Page-Ellen-Page-LT-120120-.jpg?fit=around%7C1080:1080&output-quality=90&crop=1080:1080;center,top"
-            alt="artist"
-        /> */}
     </div>
 }
 

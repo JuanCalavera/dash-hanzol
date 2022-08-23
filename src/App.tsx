@@ -29,6 +29,7 @@ import SetMail from "./pages/Auth/ForgetPassword/SetMail/SetMail";
 import Projects from "./pages/MainModule/Projects/Projects";
 import Budgets from "./pages/MainModule/Budgets/Budgets";
 import Login from "./pages/Auth/Login/Login";
+import CreateNewRequest from "./pages/MainModule/CreateNewRequest/CreateNewRequest";
 
 function App() {
 	document.title = "Dash"
@@ -62,6 +63,7 @@ function App() {
 			<Route path='/login' element={<Login />} />
 			<Route path='/home' element={<Home />} />
 			<Route path="/minhas-solicitacoes" element={<Requests />} />
+			<Route path="/criar-solicitacoes" element={<CreateNewRequest />} />
 			<Route path="/comentarios" element={<Comments />} />
 			<Route path="/perfil" element={<Profile />} />
 			<Route path="/financeiro" element={<Financial />} />
