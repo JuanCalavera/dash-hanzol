@@ -6,20 +6,22 @@ export interface DefaultInputProps {
     type: string,
     autoComplete: string,
     value: any | undefined,
-    onChange: ChangeEventHandler
+    onChange: Function
+    min: string | undefined
 }
 
-const DefaultInput = ({label, type, autoComplete, value, onChange}: DefaultInputProps) => {
+const DefaultInput = ({label, type, autoComplete, value, onChange, min}: DefaultInputProps) => {
     return (
         <div>
             <label htmlFor={label} className={styles.default_label}>{label}</label>
             <input
                 id={label}
                 type={type}
+                min={min}
                 autoComplete={autoComplete}
                 className={styles.default_input}
                 value={value}
-                onChange={onChange}
+                onChange={(e) => {onChange(e.target.value)}}
             />
         </div>
     );

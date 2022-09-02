@@ -1,0 +1,25 @@
+.card{
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px 30px 10px 30px;
+}
+
+.card > p{
+    font-weight: bold;
+}
+
+.d_flex{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container{
+    margin: 10px 30px 10px 30px;
+    text-align: center;
+}
+
+.container > img{
+    margin-top: 10px;
+    width: 50%;
+    height: auto;
+}

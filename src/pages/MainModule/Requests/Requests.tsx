@@ -4,6 +4,7 @@ import ListRequest from "../../../components/ListRequest/ListRequest";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { subtractTime, userType } from "../../../utils/auth";
 
 const Requests = () => {
 
@@ -12,21 +13,30 @@ const Requests = () => {
     const [title, setTitle] = useState<string>("Mais Recentes");
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/pub-pieces/' + localStorage['agency'], {
+
+        console.log(subtractTime('2022-09-02T03:22:18.000000Z'));
+
+        const type = userType(localStorage['token_dash']);
+        type.catch(() => {
+            navigate('/choose');
+        });
+
+
+        axios.get('http://127.0.0.1:8000/api/pub-piece/', {
             headers: {
-                'Authorization': localStorage['token']
+                'Authorization': localStorage['token_dash'],
+                'Accept': 'Application/json'
             }
         })
             .then((res) => {
-                setLists(res.data);
-
+                setLists(res.data.pubs);
             })
             .catch(() => {
-                navigate('/login');
+                // navigate('/choose');
             });
     }, []);
 
-    function filterList(){
+    function filterList() {
         setLists(listsItem.reverse());
         let titleChange = title === "Mais Recentes" ? "Mais Antigos" : "Mais Recentes";
         setTitle(titleChange)
@@ -35,28 +45,25 @@ const Requests = () => {
     return <div>
         <Header title="Minhas Solicitações" />
         <FilterList
-         onClick={filterList}
-         orderTitle={title}
-         />
+            onClick={filterList}
+            orderTitle={title}
+        />
 
         {listsItem?.map((list: any, key: number) => {
             let image = "";
-            if(list.reference_link != undefined){
-                image = list.reference_link;
-            }
-            if(list.reference_file != undefined){
+            if (list.reference_file != undefined) {
                 image = list.reference_file;
             }
             return (
                 <ListRequest
-                    dateAndHour={list.pubRequest.deliver_date}
-                    cod={'COD.' + list.pubRequest.id}
-                    title={list.pubRequest.description}
-                    subtitle={list.pubRequest.size}
-                    description={list.pubRequest.exhibition_description}
-                    status="18h depois"
-                    image={image}
-                    alt="artist"
+                    dateAndHour={list.deliver_date}
+                    cod={'COD.' + list.id}
+                    title={list.title}
+                    size={list.size}
+                    description={list.description}
+                    status={subtractTime(list.created_at)}
+                    image={''}
+                    alt={`${list.id}`}
                 />
             );
         })}

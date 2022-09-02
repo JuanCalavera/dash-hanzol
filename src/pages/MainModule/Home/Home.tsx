@@ -10,7 +10,7 @@ import { PubPiece } from "../../../redux/slices/mainSlice/mainInterfaces";
 import logo from "../../../assets/logo.png";
 
 import styles from "./Home.module.scss";
-import { BiMenu } from "react-icons/bi";
+import { BiMenu, BiNoEntry } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import ReceiveCard from "../../../components/ReceiveCard/ReceiveCard";
 import WarningCard from "../../../components/WarningCard/WarningCard";
@@ -20,41 +20,27 @@ import { RiMessage2Line } from "react-icons/ri";
 import { BsSearch } from "react-icons/bs";
 import { GoGraph } from "react-icons/go";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
-	const pubs = useAppSelector(selectPubs);
 	const dispatch = useAppDispatch();
 	const [getItem, setGetItem] = useState([]);
 	const [agencySingle, setAgency] = useState<any>();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		setHighLights(pubs.slice(0, 5));
-	}, [pubs]);
-
-	useEffect(() => {
-		axios.get('http://127.0.0.1:8000/api/agency/' + localStorage['agency'], {
+		axios.get('http://127.0.0.1:8000/api/pub-piece/', {
 			headers: {
-				'Authorization': localStorage['token']
-			}
-		}).then((res) => {
-			setAgency(res.data);
-		}).catch(() => {
-			navigate('/login');
-		});
-
-
-		axios.get('http://127.0.0.1:8000/api/pub-pieces', {
-			headers: {
-				'Authorization': localStorage['token']
+				'Authorization': localStorage['token_dash'],
+				'Accept': 'Application/json'
 			}
 		}).then((response) => {
-			setGetItem(response.data);
+			setGetItem(response.data.pubs);
+			console.log(response.data.pubs);
 		})
 			.catch(() => {
-				navigate('/login');
+				navigate('/choose');
 			});
 	}, []);
 
@@ -76,66 +62,79 @@ const Home = () => {
 
 	return (
 		<div>
-			{agencySingle && <Menu
+			{getItem.length !== 0 && <div>
+
+				{/* {agencySingle && <Menu
 				imgUrl={agencySingle.agency.icon_path}
 				alt="brand"
 				title={agencySingle.agency.name}
 				cnpj={agencySingle.user}
 				appear={toggle}
 			/>}
-			<div className={classDiv} onClick={() => ToggleInvisible(toggle)}></div>
-			<div className={styles.home_container}>
-				<div className={styles.header}>
-					<div onClick={() => ToggleInvisible(toggle)}>
-						<BiMenu size={30} className={styles.menu_icon} />
+			<div className={classDiv} onClick={() => ToggleInvisible(toggle)}></div> */}
+				<div className={styles.home_container}>
+					<div className={styles.header}>
+						<div onClick={() => ToggleInvisible(toggle)}>
+							<BiMenu size={30} className={styles.menu_icon} />
+						</div>
+						<img src={logo} width={'20%'} height="auto" alt="dash" />
+						<IoNotifications size={20} className={styles.menu_notification} />
 					</div>
-					<img src={logo} width={'20%'} height="auto" alt="dash" />
-					<IoNotifications size={20} className={styles.menu_notification} />
-				</div>
 
 
 
-				<ReceiveCard type="default">
-					{getItem?.map((gets: any) => {
+					<ReceiveCard type="default">
+						{getItem?.map((gets: any) => {
+							return (
+								<WarningCard
+									status='null'
+									imgUrl={gets.file_url}
+								/>
+							);
+						})}
+					</ReceiveCard>
+
+					<Slider highLights={highLights} />
+
+
+					{getItem?.map((gets: any, key: number) => {
+
 						return (
-							<WarningCard
-								status='null'
-								imgUrl={gets.file_url}
+							<CardHome
+								title={gets.title}
+								subtitle={'COD.' + gets.id}
+								imgUrl={''}
+								alt={gets.title}
+								content={gets.description}
+								data={gets.created}
+								status={gets.was_liked ? 'like' : 'unlike'}
+
 							/>
 						);
 					})}
-				</ReceiveCard>
-
-				<Slider highLights={highLights} />
-
-				{getItem?.map((gets: any, key: number) => {
-
-					return (
-						<CardHome
-							title={gets.title}
-							subtitle={'COD.' + gets.id}
-							imgUrl={gets.file_url}
-							alt={gets.title}
-							content={gets.description}
-							data={gets.created}
-							status={gets.was_liked ? 'like' : 'unlike'}
-
-						/>
-					);
-				})}
-				<div
-					className={styles.plus_btn_container}
-				// onClick={openPubRequestForm}
-				>
-					<div className={styles.plus_btn_background}></div>
-					<AiFillPlusCircle className={styles.plus_btn} />
+					<div
+						className={styles.plus_btn_container}
+					// onClick={openPubRequestForm}
+					>
+						<div className={styles.plus_btn_background}></div>
+						<AiFillPlusCircle className={styles.plus_btn} />
+					</div>
 				</div>
-			</div>
-			<div className={styles.bottom_menu}>
-				<RiMessage2Line size={30} />
-				<BsSearch size={30} />
-				<GoGraph size={30} />
-			</div>
+				<div className={styles.bottom_menu}>
+					<RiMessage2Line size={30} />
+					<BsSearch size={30} />
+					<GoGraph size={30} />
+				</div>
+			</div>}
+			{getItem.length === 0 &&
+				<div className={styles.error}>
+					<h3>A agência não possui nenhuma solicitação no momento</h3>
+					<BiNoEntry size={100} />
+					<Link to={'/criar-solicitacoes'}>
+						<p>Criar uma solicitação</p>
+					</Link>
+				</div>
+			}
 		</div>
 	);
 };

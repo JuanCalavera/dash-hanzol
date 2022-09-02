@@ -5,38 +5,29 @@ import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../../../assets/logo-black.png";
 import { useAppDispatch } from "../../../redux/hooks";
-import { login } from "../../../redux/slices/authSlice/authAsyncActions";
-import { cnpjPreProcessor } from "../../../utils/validate";
 
-import styles from "./Login.module.scss";
+import styles from "./LoginUser.module.scss";
 
-const Login = () => {
-	const [cnpj, setCnpj] = useState("");
+const LoginUser = () => {
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
-	const dispatch = useAppDispatch();
 
 	const navigate = useNavigate();
 
-	const handleCnpjChange = (value: string) => {
-		const cnpj = cnpjPreProcessor(value);
-
-		setCnpj(cnpj);
-	};
-
 	function submitLogin() {
 		let data = {
-			cnpj: cnpj,
+			email: email,
 			password: password
 		};
 
-		axios.post('http://127.0.0.1:8000/api/agency/login', data, {
+		axios.post('http://127.0.0.1:8000/api/client/login', data, {
 			headers: {
 				'Accept': 'Application/json'
 			}
 		}).then((response) => {
 
-			localStorage['token_dash'] = 'Bearer ' + response.data.authorization[1];
+            localStorage['token_dash'] = 'Bearer ' + response.data.authorization[1];
 			setIsLoading(false);
             navigate('/home');
 
@@ -46,11 +37,16 @@ const Login = () => {
 			setIsLoading(false);
 		});
 
-
+            
 	}
+    
 
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
+
+        if(email.search("@") === -1 || email.search(".com") === -1){
+            alert('Email inválido');
+        }   
 
 		setIsLoading(true);
 	};
@@ -70,15 +66,15 @@ const Login = () => {
 				</div>
 				<input autoComplete="off" name="hidden" type="text" hidden />
 				<div className={styles.input_container}>
-					<label>CNPJ</label>
+					<label>Email</label>
 					<input
 						type="text"
-						name="cnpj"
-						autoComplete="off"
+						name="email"
+						autoComplete="on"
 						className={styles.cnpj_input}
-						value={cnpj}
+						value={email}
 						onChange={(event) =>
-							handleCnpjChange(event.target.value)
+							setEmail(event.target.value)
 						}
 					/>
 					<label>Senha</label>
@@ -114,4 +110,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default LoginUser;

@@ -4,7 +4,7 @@ import styles from './DefaultTextArea.module.scss';
 export interface DefaultTextAreaProps{
     label: string,
     value:string | number | undefined,
-    onChange: ChangeEventHandler
+    onChange: Function
 }
 
 const DefaultTextArea = ({label, value, onChange}: DefaultTextAreaProps) => {
@@ -17,7 +17,7 @@ const DefaultTextArea = ({label, value, onChange}: DefaultTextAreaProps) => {
             cols={30}
             rows={10}
             value={value}
-            onChange={onChange}/>
+            onChange={(e) => {onChange(e.target.value)}}/>
         </div>
     );
 }

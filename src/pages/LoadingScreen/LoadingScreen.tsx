@@ -17,7 +17,7 @@ const LoadingScreen = () => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			navigate('/login');
+			navigate('/choose');
 		}, 3000)
 	});
 
