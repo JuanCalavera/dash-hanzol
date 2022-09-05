@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo-black.png";
 import { useAppDispatch } from "../../../redux/hooks";
 import { login } from "../../../redux/slices/authSlice/authAsyncActions";
+import { baseUrl } from "../../../utils/auth";
 import { cnpjPreProcessor } from "../../../utils/validate";
 
 import styles from "./Login.module.scss";
@@ -25,12 +26,19 @@ const Login = () => {
 	};
 
 	function submitLogin() {
+		let cnpjRaw = cnpj.replaceAll('.', '');
+		cnpjRaw = cnpjRaw.replaceAll('/', '');
+		cnpjRaw = cnpjRaw.replaceAll('-', '');
+
+		console.log(cnpjRaw);
+		
+		
 		let data = {
-			cnpj: cnpj,
+			cnpj: cnpjRaw,
 			password: password
 		};
 
-		axios.post('http://127.0.0.1:8000/api/agency/login', data, {
+		axios.post(baseUrl + 'agency/login', data, {
 			headers: {
 				'Accept': 'Application/json'
 			}
@@ -38,12 +46,13 @@ const Login = () => {
 
 			localStorage['token_dash'] = 'Bearer ' + response.data.authorization[1];
 			setIsLoading(false);
-            navigate('/home');
+            navigate('/minhas-solicitacoes');
 
 		})
 		.catch(() => {
 			alert('Usuário Inválido');
 			setIsLoading(false);
+			setPassword('')
 		});
 
 

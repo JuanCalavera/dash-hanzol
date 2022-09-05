@@ -4,25 +4,38 @@ import ListRequest from "../../../components/ListRequest/ListRequest";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { subtractTime, userType } from "../../../utils/auth";
+import { baseUrl, subtractTime, userType } from "../../../utils/auth";
 
 const Requests = () => {
 
     const navigate = useNavigate();
     const [listsItem, setLists] = useState<any>();
     const [title, setTitle] = useState<string>("Mais Recentes");
+    const [headText, setHeadText] = useState<string>("Mais Recentes");
+    const [useNavigation, setUseNavigation] = useState<boolean>(false);
 
     useEffect(() => {
 
         console.log(subtractTime('2022-09-02T03:22:18.000000Z'));
 
         const type = userType(localStorage['token_dash']);
-        type.catch(() => {
-            navigate('/choose');
-        });
+
+        type.then((res) => {
+            console.log(res);
+
+            if (res === 'agency') {
+                setHeadText("Solicitações enviadas para você");
+                setUseNavigation(true);
+            } else if (res === 'client') {
+                setHeadText("Minhas Solicitações");
+            }
+        })
+            .catch(() => {
+                navigate('/choose');
+            });
 
 
-        axios.get('http://127.0.0.1:8000/api/pub-piece/', {
+        axios.get(baseUrl + 'pub-piece/', {
             headers: {
                 'Authorization': localStorage['token_dash'],
                 'Accept': 'Application/json'
@@ -35,6 +48,13 @@ const Requests = () => {
                 // navigate('/choose');
             });
     }, []);
+    
+
+    const addFiles = () => {
+        if(useNavigation){
+            navigate('/criar-solicitacoes');
+        }
+    }
 
     function filterList() {
         setLists(listsItem.reverse());
@@ -43,7 +63,7 @@ const Requests = () => {
     }
 
     return <div>
-        <Header title="Minhas Solicitações" />
+        <Header title={headText} />
         <FilterList
             onClick={filterList}
             orderTitle={title}
@@ -57,12 +77,13 @@ const Requests = () => {
             return (
                 <ListRequest
                     dateAndHour={list.deliver_date}
-                    cod={'COD.' + list.id}
+                    cod={list.id}
                     title={list.title}
                     size={list.size}
                     description={list.description}
                     status={subtractTime(list.created_at)}
                     image={''}
+                    onClick={addFiles}
                     alt={`${list.id}`}
                 />
             );

@@ -32,9 +32,9 @@ import Login from "./pages/Auth/Login/Login";
 import CreateNewRequest from "./pages/MainModule/CreateNewRequest/CreateNewRequest";
 import Choose from "./pages/MainModule/Choose/Choose";
 import LoginUser from "./pages/MainModule/LoginUser/LoginUser";
+import AddFilesRequest from "./pages/MainModule/AddFilesRequest/AddFilesRequest";
 
 function App() {
-	document.title = "Dash"
 	// const token = useAppSelector(selectToken);
 	// const isLoading = useAppSelector(selectLoading);
 	// const dispatch = useAppDispatch();
@@ -67,7 +67,9 @@ function App() {
 			<Route path='/login-user' element={<LoginUser />} />
 			<Route path='/home' element={<Home />} />
 			<Route path="/minhas-solicitacoes" element={<Requests />} />
+			<Route path="/minhas-solicitacoes/:id" element={<Requests />} />
 			<Route path="/criar-solicitacoes" element={<CreateNewRequest />} />
+			<Route path="/criar-solicitacoes/:id" element={<AddFilesRequest />} />
 			<Route path="/comentarios" element={<Comments />} />
 			<Route path="/perfil" element={<Profile />} />
 			<Route path="/financeiro" element={<Financial />} />

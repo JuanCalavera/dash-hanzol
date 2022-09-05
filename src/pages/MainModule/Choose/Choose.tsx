@@ -15,8 +15,11 @@ const Choose = () => {
 
         const user = userType(localStorage['token_dash']);
 
-        user.then(() => {
-            navigate('/home');
+        user.then((res) => {
+            if(res === 'client'){
+                navigate('/home');
+            }
+            navigate('/minhas-solicitacoes');
         });
     });
 

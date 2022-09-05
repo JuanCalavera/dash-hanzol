@@ -21,6 +21,7 @@ import { BsSearch } from "react-icons/bs";
 import { GoGraph } from "react-icons/go";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { baseUrl, userType } from "../../../utils/auth"
 
 const Home = () => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
@@ -30,14 +31,26 @@ const Home = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		axios.get('http://127.0.0.1:8000/api/pub-piece/', {
+
+		const user = userType(localStorage['token_dash']);
+
+		user.then((res) => {
+			if (res !== 'client') {
+				navigate('/choose');
+			}
+		}).catch(() => {
+			navigate('/choose');
+		});
+
+
+		axios.get( baseUrl + 'pub-piece', {
 			headers: {
 				'Authorization': localStorage['token_dash'],
 				'Accept': 'Application/json'
 			}
 		}).then((response) => {
 			setGetItem(response.data.pubs);
-			console.log(response.data.pubs);
+			// console.log(response.data.pubs);
 		})
 			.catch(() => {
 				navigate('/choose');
@@ -64,14 +77,14 @@ const Home = () => {
 		<div>
 			{getItem.length !== 0 && <div>
 
-				{/* {agencySingle && <Menu
-				imgUrl={agencySingle.agency.icon_path}
+			{	<Menu
+				imgUrl=''
 				alt="brand"
-				title={agencySingle.agency.name}
-				cnpj={agencySingle.user}
+				title='client'
+				cnpj=''
 				appear={toggle}
 			/>}
-			<div className={classDiv} onClick={() => ToggleInvisible(toggle)}></div> */}
+			<div className={classDiv} onClick={() => ToggleInvisible(toggle)}></div>
 				<div className={styles.home_container}>
 					<div className={styles.header}>
 						<div onClick={() => ToggleInvisible(toggle)}>
@@ -88,7 +101,7 @@ const Home = () => {
 							return (
 								<WarningCard
 									status='null'
-									imgUrl={gets.file_url}
+									imgUrl={gets.files_path}
 								/>
 							);
 						})}
@@ -105,7 +118,7 @@ const Home = () => {
 								subtitle={'COD.' + gets.id}
 								imgUrl={''}
 								alt={gets.title}
-								content={gets.description}
+								content={gets.description.slice(0, 50)}
 								data={gets.created}
 								status={gets.was_liked ? 'like' : 'unlike'}
 
@@ -114,7 +127,7 @@ const Home = () => {
 					})}
 					<div
 						className={styles.plus_btn_container}
-					// onClick={openPubRequestForm}
+						onClick={() => { navigate('/criar-solicitacoes') }}
 					>
 						<div className={styles.plus_btn_background}></div>
 						<AiFillPlusCircle className={styles.plus_btn} />

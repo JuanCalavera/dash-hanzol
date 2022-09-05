@@ -1,8 +1,10 @@
 import axios from "axios";
 
+export const baseUrl = 'http://127.0.0.1:8000/api/';
+
 export const userType = async (token: string) => {
 
-    const res = await axios.get('http://127.0.0.1:8000/api/user', {
+    const res = await axios.get( baseUrl + 'user', {
         'headers': {
             'Accept': 'Application/json',
             'Authorization': token
