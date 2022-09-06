@@ -50,9 +50,9 @@ const Requests = () => {
     }, []);
     
 
-    const addFiles = () => {
+    const addFiles = (id:number) => {
         if(useNavigation){
-            navigate('/criar-solicitacoes');
+            navigate(`/criar-solicitacoes/${id}`);
         }
     }
 
@@ -83,7 +83,7 @@ const Requests = () => {
                     description={list.description}
                     status={subtractTime(list.created_at)}
                     image={''}
-                    onClick={addFiles}
+                    onClick={() => {addFiles(list.id)}}
                     alt={`${list.id}`}
                 />
             );

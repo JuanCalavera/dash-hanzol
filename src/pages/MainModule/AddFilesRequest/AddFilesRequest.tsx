@@ -2,16 +2,20 @@ import DefaultInput from '../../../components/DefaultInput/DefaultInput';
 import Header from '../../../components/Header/Header';
 import styles from './AddFilesRequest.module.scss'
 import { useParams } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const AddFilesRequest = () => {
     const id = useParams().id;
-    const inputFiles = useRef(null);
+    const formData = new FormData();
+
+    const onFileChange = (e: any) => {
+        
+        formData.append('uploads', e.target.files);
+        console.log(formData.keys);
+
+    }
 
     const onSubmit = async (data: any) => {
-        data.preventDefault();
-        console.log(data);
-        
     }
 
     return (
@@ -22,8 +26,8 @@ const AddFilesRequest = () => {
             <div className={styles.container}>
                 <form onSubmit={onSubmit} method="post" encType='multipart/form-data'>
                     <label htmlFor="add">Adicionar Arquivos</label>
-                    <input type="file" name="files_pub" id="add" ref={inputFiles} multiple />
-                    <button type='submit'>Testar</button>
+                    <input type="file" name='file_upload' id="add" onChange={onFileChange} multiple />
+                    <button>Testar</button>
                 </form>
             </div>
 
