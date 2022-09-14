@@ -33,31 +33,11 @@ import CreateNewRequest from "./pages/MainModule/CreateNewRequest/CreateNewReque
 import Choose from "./pages/MainModule/Choose/Choose";
 import LoginUser from "./pages/MainModule/LoginUser/LoginUser";
 import AddFilesRequest from "./pages/MainModule/AddFilesRequest/AddFilesRequest";
+import SingleRequest from "./pages/MainModule/SingleRequest/SingleRequest";
 
 function App() {
-	// const token = useAppSelector(selectToken);
-	// const isLoading = useAppSelector(selectLoading);
-	// const dispatch = useAppDispatch();
 
 	let content = null;
-
-	// useEffect(() => {
-	// 	const fetchAppData = async () => {
-	// 		dispatch(initLoad());
-	// 		await dispatch(getCsrfToken()).unwrap();
-	// 		await dispatch(fetchAgencyData()).unwrap();
-	// 		await dispatch(fetchPubs()).unwrap();
-	// 		dispatch(endLoad());
-	// 	};
-
-	// 	if (token) fetchAppData();
-	// 	else dispatch(endLoad());
-	// }, [dispatch, token]);
-
-	// if (isLoading) content = <LoadingScreen />;
-	// else if (token) content = <MainModule />;
-	// else content = <AuthModule />;
-	// <div className="App">{content}</div>;
 
 	return <BrowserRouter>
 		<Routes>
@@ -67,7 +47,7 @@ function App() {
 			<Route path='/login-user' element={<LoginUser />} />
 			<Route path='/home' element={<Home />} />
 			<Route path="/minhas-solicitacoes" element={<Requests />} />
-			<Route path="/minhas-solicitacoes/:id" element={<Requests />} />
+			<Route path="/minhas-solicitacoes/:id" element={<SingleRequest />} />
 			<Route path="/criar-solicitacoes" element={<CreateNewRequest />} />
 			<Route path="/criar-solicitacoes/:id" element={<AddFilesRequest />} />
 			<Route path="/comentarios" element={<Comments />} />
@@ -80,7 +60,7 @@ function App() {
 			<Route path="/esqueci-a-senha-codigo" element={<SetCode/>} />
 			<Route path="/meus-projetos" element={<Projects/>} />
 			{/* <Route path="/orcamentos-recebidos" element={<Budgets/>} /> */}
-			{/* <Route path="/registro-usuario" element={<UserRegister/>} /> */}
+			{/* <Route path="/registro-usuario/:num" element={<UserRegister/>} /> */}
 		</Routes>
 	</BrowserRouter>
 }

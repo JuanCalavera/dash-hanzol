@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { baseUrl, subtractTime, userType } from "../../../utils/auth";
+import FloatingButtonPlus from "../../../components/FloatingButtonPlus/FloatingButtonPlus";
 
 const Requests = () => {
 
@@ -88,6 +89,9 @@ const Requests = () => {
                 />
             );
         })}
+        <FloatingButtonPlus
+            onClick={() => navigate('/criar-solicitacoes')}
+        />
     </div>
 }
 

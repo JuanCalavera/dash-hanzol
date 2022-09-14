@@ -1,0 +1,21 @@
+.container{
+    margin: 0px 30px 0px 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+}
+
+.force_white{
+    color: #fff;
+}
+
+.card{
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+}
+
+.card > p{
+    font-weight: bold;
+}

@@ -3,17 +3,22 @@ import axios from "axios";
 export const baseUrl = 'http://127.0.0.1:8000/api/';
 // export const baseUrl = 'http://hanzol-dash-backend.herokuapp.com/api/';
 
+const headers = (token: string) => {
+    return { 'headers': { 'Accept': 'Application/json', 'Authorization': token } };
+}
+
 export const userType = async (token: string) => {
 
-    const res = await axios.get( baseUrl + 'user', {
-        'headers': {
-            'Accept': 'Application/json',
-            'Authorization': token
-        }
-    });
+    const res = await axios.get(baseUrl + 'user', headers(token));
 
     return res.data.type;
 
+}
+
+export const currentUser = async (token: string) => {
+    const res = await axios.get(baseUrl + 'user', headers(token));
+
+    return res.data;
 }
 
 export const currentTime = () => {
@@ -22,10 +27,10 @@ export const currentTime = () => {
     let cMonth = '' + (currentDate.getMonth() + 1)
     let cYear = '' + currentDate.getFullYear()
 
-    if(cDay.length < 2){
+    if (cDay.length < 2) {
         cDay = '0' + cDay;
     }
-    if(cMonth.length < 2){
+    if (cMonth.length < 2) {
         cMonth = '0' + cMonth;
     }
 

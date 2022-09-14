@@ -38,7 +38,7 @@ const ListRequest = ({ dateAndHour, cod, title, size, description, status, image
                         {image === "" ? withoutImage : withImage}
                     </div>
                     <div className={styles.see_answer}>
-                        <Link className={styles.green_color} to={`/minhas-solicitacoes?pub=${cod}`}>Ver mais</Link>
+                        <Link className={styles.green_color} to={`/minhas-solicitacoes/${cod}`}>Ver mais</Link>
                     </div>
                 </div>
             </div>
