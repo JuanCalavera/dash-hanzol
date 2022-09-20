@@ -34,6 +34,7 @@ import Choose from "./pages/MainModule/Choose/Choose";
 import LoginUser from "./pages/MainModule/LoginUser/LoginUser";
 import AddFilesRequest from "./pages/MainModule/AddFilesRequest/AddFilesRequest";
 import SingleRequest from "./pages/MainModule/SingleRequest/SingleRequest";
+import Users from "./pages/MainModule/Users/Users";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
 			<Route path="/esqueci-a-senha-email" element={<SetMail/>} />
 			<Route path="/esqueci-a-senha-codigo" element={<SetCode/>} />
 			<Route path="/meus-projetos" element={<Projects/>} />
+			<Route path="/usuarios" element={<Users/>} />
 			{/* <Route path="/orcamentos-recebidos" element={<Budgets/>} /> */}
 			{/* <Route path="/registro-usuario/:num" element={<UserRegister/>} /> */}
 		</Routes>

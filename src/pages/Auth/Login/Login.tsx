@@ -84,6 +84,7 @@ const Login = () => {
 						type="text"
 						name="cnpj"
 						autoComplete="off"
+						maxLength={18}
 						className={styles.cnpj_input}
 						value={cnpj}
 						onChange={(event) =>

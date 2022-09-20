@@ -1,0 +1,23 @@
+.cards{
+    margin: 30px;
+    padding: 10px;
+    background-color: #5a5a5a;
+    color:#fff;
+    border-radius: 5px;
+}
+
+.d_flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+.button{
+    border-radius: 50%;
+    background-color: red;
+    padding: 5px 5px 0px 5px;
+}

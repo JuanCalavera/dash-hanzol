@@ -3,7 +3,7 @@ import axios from "axios";
 export const baseUrl = 'http://127.0.0.1:8000/api/';
 // export const baseUrl = 'http://hanzol-dash-backend.herokuapp.com/api/';
 
-const headers = (token: string) => {
+export const headers = (token: string) => {
     return { 'headers': { 'Accept': 'Application/json', 'Authorization': token } };
 }
 
