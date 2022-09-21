@@ -17,12 +17,9 @@ const Requests = () => {
 
     useEffect(() => {
 
-        console.log(subtractTime('2022-09-02T03:22:18.000000Z'));
-
         const type = userType(localStorage['token_dash']);
 
         type.then((res) => {
-            console.log(res);
 
             if (res === 'agency') {
                 setHeadText("Solicitações enviadas para você");
@@ -49,10 +46,10 @@ const Requests = () => {
                 // navigate('/choose');
             });
     }, []);
-    
 
-    const addFiles = (id:number) => {
-        if(useNavigation){
+
+    const addFiles = (id: number) => {
+        if (useNavigation) {
             navigate(`/criar-solicitacoes/${id}`);
         }
     }
@@ -82,16 +79,17 @@ const Requests = () => {
                     title={list.title}
                     size={list.size}
                     description={list.description}
-                    status={subtractTime(list.created_at)}
-                    image={''}
-                    onClick={() => {addFiles(list.id)}}
+                    time={subtractTime(list.created_at)}
+                    status={list.status}
+                    image={image}
+                    onClick={() => { addFiles(list.id) }}
                     alt={`${list.id}`}
                 />
             );
         })}
-        <FloatingButtonPlus
+        {!useNavigation && <FloatingButtonPlus
             onClick={() => navigate('/criar-solicitacoes')}
-        />
+        />}
     </div>
 }
 

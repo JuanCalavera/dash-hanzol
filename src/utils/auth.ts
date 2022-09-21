@@ -18,7 +18,7 @@ export const userType = async (token: string) => {
 export const currentUser = async (token: string) => {
     const res = await axios.get(baseUrl + 'user', headers(token));
 
-    return res.data;
+    return res;
 }
 
 export const currentTime = () => {

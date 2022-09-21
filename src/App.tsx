@@ -35,6 +35,7 @@ import LoginUser from "./pages/MainModule/LoginUser/LoginUser";
 import AddFilesRequest from "./pages/MainModule/AddFilesRequest/AddFilesRequest";
 import SingleRequest from "./pages/MainModule/SingleRequest/SingleRequest";
 import Users from "./pages/MainModule/Users/Users";
+import AddClient from "./pages/MainModule/AddClient/AddClient";
 
 function App() {
 
@@ -51,6 +52,8 @@ function App() {
 			<Route path="/minhas-solicitacoes/:id" element={<SingleRequest />} />
 			<Route path="/criar-solicitacoes" element={<CreateNewRequest />} />
 			<Route path="/criar-solicitacoes/:id" element={<AddFilesRequest />} />
+			<Route path="/criar-cliente/" element={<AddClient />} />
+			<Route path="/criar-cliente/:cnpj" element={<AddClient />} />
 			<Route path="/comentarios" element={<Comments />} />
 			<Route path="/perfil" element={<Profile />} />
 			<Route path="/financeiro" element={<Financial />} />
