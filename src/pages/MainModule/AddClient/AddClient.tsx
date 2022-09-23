@@ -42,7 +42,7 @@ const AddClient = () => {
             headers(localStorage['token_dash']))
             .then((resPost) => {
                 setsuccessNotification(true);
-                setInterval(() => {
+                setTimeout(() => {
                     navigate('/minhas-solicitacoes');
                 }, 5000);
             })

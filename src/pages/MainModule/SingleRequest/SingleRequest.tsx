@@ -36,7 +36,7 @@ const SingleRequest = () => {
             <Header
                 title='Publicação Solicitada'
             />
-            { single && <div>
+            {single && <div>
                 <div className={styles.container}>
                     <h1>{single.pub_piece.title}</h1>
                     <p><b>Mídias:</b></p>
@@ -63,6 +63,7 @@ const SingleRequest = () => {
                 </div>
                 <div className={styles.container}>
                     <h3>Detalhes do projeto</h3>
+                    {single.pub_piece.status === "success" ? <h4 style={{ color: 'green' }}>Status: {single.pub_piece.status}</h4> : <h4>Status: {single.pub_piece.status}</h4>}
                     <p>Tamanho solicitado: {single.pub_piece.size}</p>
                     <p>{single.pub_piece.description}</p>
                     <p><small><b>Solicitado pelo cliente:</b> {single.user}</small></p>

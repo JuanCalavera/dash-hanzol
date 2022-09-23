@@ -1,0 +1,28 @@
+.container{
+    margin: 30px 30px 10px 30px;
+    color: #fff;
+}
+
+.input_form > input{
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.input_form > label{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.container > button{
+    border: none;
+    border-radius: 30px;
+    background-color: #ffbf00;
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
