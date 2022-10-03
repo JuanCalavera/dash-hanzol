@@ -22,7 +22,6 @@ const PubListItem = (props: { pub: PubPiece }) => {
 	};
 
 	let text = pub.description;
-	// console.log(text.length);
 	if (text.length > 145) text = text.slice(0, 143) + "...";
 
 	let icon = null;

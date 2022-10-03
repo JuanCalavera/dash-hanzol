@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { baseUrl, subtractTime, userType } from "../../../utils/auth";
 import FloatingButtonPlus from "../../../components/FloatingButtonPlus/FloatingButtonPlus";
+import { RiUserSettingsFill } from "react-icons/ri";
+import styles from "./Requests.module.scss";
 
 const Requests = () => {
 
@@ -66,6 +68,10 @@ const Requests = () => {
             onClick={filterList}
             orderTitle={title}
         />
+
+        <div className={styles.admin_button} onClick={() => {navigate('/usuarios')}}>
+            <RiUserSettingsFill /> Administrar Usuários
+        </div>
 
         {listsItem?.map((list: any, key: number) => {
             let image = "";

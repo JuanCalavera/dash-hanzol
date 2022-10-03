@@ -29,8 +29,6 @@ const Login = () => {
 		let cnpjRaw = cnpj.replaceAll('.', '');
 		cnpjRaw = cnpjRaw.replaceAll('/', '');
 		cnpjRaw = cnpjRaw.replaceAll('-', '');
-
-		console.log(cnpjRaw);
 		
 		
 		let data = {

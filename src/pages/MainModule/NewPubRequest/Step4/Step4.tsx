@@ -46,7 +46,6 @@ const Step4 = () => {
 				);
 			})
 			.catch((err) => {
-				console.log(err.response);
 				alert("Ocorreu um erro ao enviar o seu pedido");
 			});
 	};

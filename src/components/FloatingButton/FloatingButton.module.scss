@@ -2,16 +2,16 @@
 
 .floating_container {
     position: fixed;
-    width: 100px;
-    height: 100px;
+    /* width: 100px;
+    height: 100px; */
     bottom: 0;
     right: 0;
-    margin: 35px 25px;
+    margin: 35px;
   }
 
 .floating_button {
     background-color: #a6f5a6;
     border-radius: 50px;
     text-align: center;
-    padding-top: 10px;
+    padding: 10px 10px 5px 10px;
 }

@@ -80,7 +80,6 @@ const CreateNewRequest = () => {
                 'Authorization': localStorage['token_dash']
             }
         }).then((res) => {
-            console.log(res.data);
             alert(`Solicitação de ${res.data.title} criada com sucesso :)`)
             navigate('/minhas-solicitacoes')
 

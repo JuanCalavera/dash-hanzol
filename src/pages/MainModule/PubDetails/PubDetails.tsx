@@ -49,7 +49,6 @@ const PubDetails = () => {
 			})
 			.catch((err) => {
 				alert("Ocorreu um erro ao enviar a sua availiação");
-				console.log(err);
 			});
 	};
 

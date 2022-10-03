@@ -1,0 +1,18 @@
+.container{
+    color: #fff;
+    margin: 10px 30px 0 30px;
+}
+
+.container > div > p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.container > button {
+    margin: 10px;
+    background-color: #ffbf00;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}

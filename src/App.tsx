@@ -37,6 +37,8 @@ import SingleRequest from "./pages/MainModule/SingleRequest/SingleRequest";
 import Users from "./pages/MainModule/Users/Users";
 import AddClient from "./pages/MainModule/AddClient/AddClient";
 import ClientRegister from "./pages/Auth/ClientRegister/ClientRegister";
+import CommentRegister from "./pages/MainModule/CommentRegister/CommentRegister";
+import AdminPage from "./pages/MainModule/AdminPage/AdminPage";
 
 function App() {
 
@@ -55,7 +57,8 @@ function App() {
 			<Route path="/criar-solicitacoes/:id" element={<AddFilesRequest />} />
 			<Route path="/criar-cliente/" element={<AddClient />} />
 			<Route path="/criar-cliente/:cnpj" element={<ClientRegister/>} />
-			<Route path="/comentarios" element={<Comments />} />
+			<Route path="/criar-comentario/:pub" element={<CommentRegister/>} />
+			<Route path="/comentarios/:pub" element={<Comments />} />
 			<Route path="/perfil" element={<Profile />} />
 			<Route path="/financeiro" element={<Financial />} />
 			<Route path="/conteudo-recebido" element={<ReceiveContent />} />
@@ -65,6 +68,7 @@ function App() {
 			<Route path="/esqueci-a-senha-codigo" element={<SetCode/>} />
 			<Route path="/meus-projetos" element={<Projects/>} />
 			<Route path="/usuarios" element={<Users/>} />
+			<Route path="/admin-page" element={<AdminPage/>} />
 			{/* <Route path="/orcamentos-recebidos" element={<Budgets/>} /> */}
 			{/* <Route path="/registro-usuario/:num" element={<UserRegister/>} /> */}
 		</Routes>

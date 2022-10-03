@@ -1,13 +1,14 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './Users.module.scss';
-import Header from '../../../components/Header/Header';
-import { baseUrl, headers, userType } from '../../../utils/auth';
-import { BiTrash } from 'react-icons/bi';
-import { resourceLimits } from 'worker_threads';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BiTrash } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import Header from "../../../components/Header/Header";
+import { baseUrl, headers, userType } from "../../../utils/auth";
 
-const Users = () => {
+import styles from './AdminPage.module.scss';
+
+const AdminPage = () => {
+
     const navigate = useNavigate();
     const [result, setResult] = useState([]);
 
@@ -23,7 +24,7 @@ const Users = () => {
                 navigate('choose');
             });
 
-        axios.get("http://127.0.0.1:8000/api/agency/", headers(localStorage['token_dash']))
+        axios.get(`${baseUrl}agency/all-users`, headers(localStorage['token_dash']))
             .then((res) => {
                 setResult(res.data);
             });
@@ -47,7 +48,7 @@ const Users = () => {
     return (
         <div>
             <Header
-                title='Usuários'
+                title='Página Admin'
             />
             {result.length !== 0 ?
                 result?.map((e: any, key: number) => {
@@ -64,9 +65,9 @@ const Users = () => {
                         <p>Email: {e.client.email}</p>
                         <p>Requisições: {e.pub_requests}</p>
                     </div>
-                }) : <div><h2 style={{color: 'white', textAlign: 'center'}}>Sem nenhum cliente :( </h2></div>}
+                }) : <div><h2 style={{ color: 'white', textAlign: 'center' }}>Sem nenhum cliente :( </h2></div>}
         </div>
     );
 }
 
-export default Users;
+export default AdminPage;

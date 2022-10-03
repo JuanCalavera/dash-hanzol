@@ -50,7 +50,6 @@ const Home = () => {
 			}
 		}).then((response) => {
 			setGetItem(response.data.pubs);
-			// console.log(response.data.pubs);
 		})
 			.catch(() => {
 				navigate('/choose');

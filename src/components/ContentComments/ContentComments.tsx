@@ -1,14 +1,16 @@
+import { BiUser } from "react-icons/bi";
+import { GiTie } from "react-icons/gi";
 import styles from "./ContentComments.module.scss";
 
 export interface ContentCommentsProps {
     title: string;
-    photoUrl: string;
+    user_type: string;
     subtitle: string;
     status: string;
     content: string;
 }
 
-const ContentComments = ({ title, photoUrl, subtitle, status, content }: ContentCommentsProps) => {
+const ContentComments = ({ title, user_type, subtitle, status, content }: ContentCommentsProps) => {
     let icon;
     if (status === 'success') {
         icon = <div className={styles.background_icon_success}>
@@ -23,11 +25,13 @@ const ContentComments = ({ title, photoUrl, subtitle, status, content }: Content
             </svg>
         </div>;
     }
+
     return <div className={styles.background_item}>
         <div className={styles.content}>
             <div className={styles.d_flex}>
-                {/* <img className={styles.img} src="https://pm1.narvii.com/6870/cf3d4ece850343f23b0c8dde897bb0003a112019r1-480-629v2_hq.jpg" alt="profile" /> */}
-                <img className={styles.img} src={photoUrl} alt="profile" />
+                <div className={styles.profile}>
+                    {user_type === 'agency' ? <GiTie size={50} /> : <BiUser size={50} />}
+                </div>
                 <div>
                     <p><b>{title}</b><br />
                         <small>{subtitle}</small></p>

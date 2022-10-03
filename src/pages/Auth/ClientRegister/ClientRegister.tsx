@@ -25,7 +25,6 @@ const ClientRegister = () => {
                 'Accept': 'Application/json'
             }
         }).then((user) => {
-            console.log(user);
             setActualUser(user.data);
         }).catch(() => {
             setRegisterWarning(true);
