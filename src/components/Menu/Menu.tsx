@@ -1,5 +1,5 @@
 import { AiFillCamera, AiFillLike, AiFillPlusCircle, AiOutlineBarcode, AiOutlineFundProjectionScreen, AiOutlineQuestionCircle } from "react-icons/ai";
-import { BiExit } from "react-icons/bi";
+import { BiExit, BiUser } from "react-icons/bi";
 import { IoAddCircleSharp, IoInformationCircle, IoNotifications } from "react-icons/io5";
 import { RiMoneyDollarBoxFill, RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
@@ -27,7 +27,7 @@ const Menu = ({ imgUrl, alt, title, cnpj, appear }: MenuProps) => {
     }
 
     const logOut = () => {
-        localStorage['token_dash'] = null;
+        localStorage['token_dash'] = '';
         navigate('/choose');
     }
 
@@ -38,7 +38,7 @@ const Menu = ({ imgUrl, alt, title, cnpj, appear }: MenuProps) => {
                     {imgUrl !== null || imgUrl === "" &&
                         <img className={styles.img} src={imgUrl} alt={alt} />
                     }
-                    <p><b>{title}</b><br />
+                    <div className={styles.icon}><BiUser size={30} /></div> <p><b> {title}</b><br />
                         {cnpj !== null || cnpj === "" &&
                             <small className={styles.cnpj}>CNPJ: {cnpj}</small>
                         }
@@ -51,18 +51,18 @@ const Menu = ({ imgUrl, alt, title, cnpj, appear }: MenuProps) => {
             <Link to={'/minhas-solicitacoes'}>
                 <p><IoAddCircleSharp size={15} /> Minhas solicitações</p>
             </Link>
-            <Link to={'/orcamentos-recebidos'}>
+            {/* <Link to={'/orcamentos-recebidos'}>
                 <p><RiMoneyDollarBoxFill size={15} /> Orçamentos recebidos</p>
-            </Link>
-            <Link to={'/meus-projetos'}>
+            </Link> */}
+            {/* <Link to={'/meus-projetos'}>
                 <p><AiOutlineFundProjectionScreen size={15} /> Meus Projetos</p>
-            </Link>
-            <Link to={'/conteudo-recebido'}>
+            </Link> */}
+            {/* <Link to={'/conteudo-recebido'}>
                 <p><AiFillCamera size={15} /> Conteúdo recebido</p>
-            </Link>
-            <Link to={'/comentarios'}>
+            </Link> */}
+            {/* <Link to={'/comentarios'}>
                 <p><AiFillLike size={15} /> Avaliações/Comentários</p>
-            </Link>
+            </Link> */}
 
             <br />
 
@@ -70,9 +70,9 @@ const Menu = ({ imgUrl, alt, title, cnpj, appear }: MenuProps) => {
             <Link to={'/perfil'}>
                 <p><IoInformationCircle size={15} /> Meu cadastro</p>
             </Link>
-            <Link to={'/financeiro'}>
+            {/* <Link to={'/financeiro'}>
                 <p><AiOutlineBarcode size={15} /> Financeiro</p>
-            </Link>
+            </Link> */}
 
             <hr />
 

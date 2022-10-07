@@ -30,7 +30,11 @@ const Comments = () => {
         {comments && <div>
             <FilterList
                 onClick={() => { }}
-                orderTitle="Mais recentes" />
+                orderTitle="Mais recentes"
+                textValueSearch={""}
+                onChange={undefined}
+                onClickSearch={undefined}
+            />
 
             {comments.map((comment: any) => {
                 return <ContentComments
@@ -41,7 +45,7 @@ const Comments = () => {
                     content={comment.content}
                 />
             })}
-            <div onClick={() => {navigate(`/criar-comentario/${pub}`)}}>
+            <div onClick={() => { navigate(`/criar-comentario/${pub}`) }}>
                 <FloatingButton />
             </div>
         </div>

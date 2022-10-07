@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import ReceiveCard from '../../../components/ReceiveCard/ReceiveCard';
 import WarningCard from '../../../components/WarningCard/WarningCard';
-import { baseUrl, userType, headers } from '../../../utils/auth';
+import { baseUrl, userType, headers, baseStorageUrl } from '../../../utils/auth';
 import styles from './SingleRequest.module.scss';
 
 const SingleRequest = () => {
@@ -18,6 +18,7 @@ const SingleRequest = () => {
     const [viewStatus, setViewStatus] = useState<boolean>(false);
     const [nameStatus, setNameStatus] = useState<string>('');
     const [selectStatus, setSelectStatus] = useState<string>('');
+    const [filesSingle, setFilesSingle] = useState<any>();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,6 +36,7 @@ const SingleRequest = () => {
                 setCommentsData(res.data.comments);
                 setViewButton(res.data.comments.length > 2 ? true : false);
                 verifyStatus(res.data.pub_piece.status);
+                setFilesSingle(JSON.parse(res.data.pub_piece.files_path));
             }).catch(() => {
                 alert('Não foi encontrada uma publicação neste endereço')
                 navigate('/minhas-solicitacoes');
@@ -82,26 +84,18 @@ const SingleRequest = () => {
                     <h1>{single.pub_piece.title}</h1>
                     <p><b>Mídias:</b></p>
                 </div>
-                <div className={styles.force_white}>
+
+                {filesSingle && <div className={styles.force_white}>
                     <ReceiveCard type='non-default'>
-                        <WarningCard
-                            status=''
-                            imgUrl='https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/l-arsene-lupin-georges-descrieres-est-mort-595818/12040310-1-fre-FR/L-Arsene-Lupin-Georges-Descrieres-est-mort.jpg'
-                        />
-                        <div className={styles.card} onClick={() => { }}>
-                            <AiOutlineFilePdf size={50} />
-                            <p>PDF</p>
-                        </div>
-                        <div className={styles.card} onClick={() => { }}>
-                            <AiOutlineFileGif size={50} />
-                            <p>GIF</p>
-                        </div>
-                        <div className={styles.card} onClick={() => { }}>
-                            <AiOutlineVideoCamera size={50} />
-                            <p>Vídeo</p>
-                        </div>
+                        {filesSingle.map((file: any) => {
+                            return <WarningCard
+                                status=''
+                                imgUrl={`${baseStorageUrl}${file}`} onClick={undefined}                            />
+                        })
+                        }
                     </ReceiveCard>
-                </div>
+                </div>}
+
                 <div className={styles.container}>
                     <h3>Detalhes do projeto</h3>
                     {nameStatus === "Finalizado" ? <h4 style={{ color: 'green' }}>Status: {nameStatus}</h4> : <h4>Status: {nameStatus}</h4>}

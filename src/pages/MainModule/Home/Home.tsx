@@ -10,7 +10,7 @@ import { PubPiece } from "../../../redux/slices/mainSlice/mainInterfaces";
 import logo from "../../../assets/logo.png";
 
 import styles from "./Home.module.scss";
-import { BiMenu, BiNoEntry } from "react-icons/bi";
+import { BiMenu, BiNoEntry, BiUser } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import ReceiveCard from "../../../components/ReceiveCard/ReceiveCard";
 import WarningCard from "../../../components/WarningCard/WarningCard";
@@ -21,29 +21,31 @@ import { BsSearch } from "react-icons/bs";
 import { GoGraph } from "react-icons/go";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { baseUrl, userType } from "../../../utils/auth"
+import { baseStorageUrl, baseUrl, currentUser, userType } from "../../../utils/auth"
 
 const Home = () => {
 	const [highLights, setHighLights] = useState<PubPiece[]>([]);
 	const dispatch = useAppDispatch();
 	const [getItem, setGetItem] = useState([]);
+	const [currentClient, setCurrentClient] = useState<any>();
 	const [agencySingle, setAgency] = useState<any>();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 
-		const user = userType(localStorage['token_dash']);
+		const user = currentUser(localStorage['token_dash']);
 
 		user.then((res) => {
-			if (res !== 'client') {
+			if (res.data.type !== 'client') {
 				navigate('/choose');
 			}
+			setCurrentClient(res.data);
 		}).catch(() => {
 			navigate('/choose');
 		});
 
 
-		axios.get( baseUrl + 'pub-piece', {
+		axios.get(baseUrl + 'pub-piece', {
 			headers: {
 				'Authorization': localStorage['token_dash'],
 				'Accept': 'Application/json'
@@ -59,6 +61,7 @@ const Home = () => {
 	let [toggle, setToggle] = useState<boolean>(false);
 	let [classDiv, setClassDiv] = useState<string>(styles.out + ' ' + styles.d_none);
 
+
 	function ToggleInvisible(e: boolean) {
 		if (!e) {
 			setClassDiv(classDiv = styles.out);
@@ -70,20 +73,20 @@ const Home = () => {
 	}
 
 	document.body.style.background = "black";
-
+	
 
 	return (
 		<div>
-			{getItem.length !== 0 && <div>
+			{getItem && <div>
 
-			{	<Menu
-				imgUrl=''
-				alt="brand"
-				title='client'
-				cnpj=''
-				appear={toggle}
-			/>}
-			<div className={classDiv} onClick={() => ToggleInvisible(toggle)}></div>
+				{<Menu
+					imgUrl=''
+					alt="brand"
+					title={`${currentClient ? currentClient.name : ''}`}
+					cnpj=''
+					appear={toggle}
+				/>}
+				<div className={classDiv} onClick={() => ToggleInvisible(toggle)}></div>
 				<div className={styles.home_container}>
 					<div className={styles.header}>
 						<div onClick={() => ToggleInvisible(toggle)}>
@@ -96,11 +99,18 @@ const Home = () => {
 
 
 					<ReceiveCard type="default">
-						{getItem?.map((gets: any) => {
+						{getItem?.map((gets: any, key: number) => {
+							if(gets.user_id !== currentClient.id){
+								return <></>
+							}
+
+							let files = JSON.parse(gets.files_path);
+							let singleFile = files[0];
 							return (
 								<WarningCard
 									status='null'
-									imgUrl={gets.files_path}
+									imgUrl={`${baseStorageUrl}${singleFile}`}
+									onClick={() => { navigate(`/minhas-solicitacoes/${gets.id}`) }}
 								/>
 							);
 						})}
@@ -111,17 +121,27 @@ const Home = () => {
 
 					{getItem?.map((gets: any, key: number) => {
 
-						return (
-							<CardHome
-								title={gets.title}
-								subtitle={'COD.' + gets.id}
-								imgUrl={''}
-								alt={gets.title}
-								content={gets.description.slice(0, 50)}
-								data={gets.created}
-								status={gets.was_liked ? 'like' : 'unlike'}
+						if(gets.user_id !== currentClient.id){
+							return <></>
+						}
 
-							/>
+						let files = JSON.parse(gets.files_path);
+
+						let singleFile = files[0];
+
+						return (
+							<div onClick={() => { navigate(`/minhas-solicitacoes/${gets.id}`) }}>
+								<CardHome
+									title={gets.title}
+									subtitle={'COD.' + gets.id}
+									imgUrl={`${baseStorageUrl}${singleFile}`}
+									alt={gets.title}
+									content={`${gets.description.slice(0, 50)}...`}
+									data={gets.created}
+									status={gets.status !== 'unlike' ? 'like' : 'unlike'}
+
+								/>
+							</div>
 						);
 					})}
 					<div
@@ -132,11 +152,11 @@ const Home = () => {
 						<AiFillPlusCircle className={styles.plus_btn} />
 					</div>
 				</div>
-				<div className={styles.bottom_menu}>
+				{/* <div className={styles.bottom_menu}>
 					<RiMessage2Line size={30} />
 					<BsSearch size={30} />
 					<GoGraph size={30} />
-				</div>
+				</div> */}
 			</div>}
 			{getItem.length === 0 &&
 				<div className={styles.error}>

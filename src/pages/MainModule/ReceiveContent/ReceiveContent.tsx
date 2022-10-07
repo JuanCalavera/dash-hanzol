@@ -42,16 +42,13 @@ const ReceiveContent = () => {
             <ReceiveCard type='default'>
                 <WarningCard
                     status='like'
-                    imgUrl='https://yt3.ggpht.com/a/AATXAJx55k8vIr7ZY8rMH3gRgNpRw0PWdPppbChYVw=s900-c-k-c0xffffffff-no-rj-mo'
-                />
+                    imgUrl='https://yt3.ggpht.com/a/AATXAJx55k8vIr7ZY8rMH3gRgNpRw0PWdPppbChYVw=s900-c-k-c0xffffffff-no-rj-mo' onClick={undefined}                />
                 <WarningCard
                     status='unlike'
-                    imgUrl='https://yt3.ggpht.com/a/AATXAJx55k8vIr7ZY8rMH3gRgNpRw0PWdPppbChYVw=s900-c-k-c0xffffffff-no-rj-mo'
-                />
+                    imgUrl='https://yt3.ggpht.com/a/AATXAJx55k8vIr7ZY8rMH3gRgNpRw0PWdPppbChYVw=s900-c-k-c0xffffffff-no-rj-mo' onClick={undefined}                />
                 <WarningCard
                     status='non'
-                    imgUrl='https://yt3.ggpht.com/a/AATXAJx55k8vIr7ZY8rMH3gRgNpRw0PWdPppbChYVw=s900-c-k-c0xffffffff-no-rj-mo'
-                />
+                    imgUrl='https://yt3.ggpht.com/a/AATXAJx55k8vIr7ZY8rMH3gRgNpRw0PWdPppbChYVw=s900-c-k-c0xffffffff-no-rj-mo' onClick={undefined}                />
             </ReceiveCard>
 
             <div className={styles.d_flex_between}>
@@ -62,16 +59,13 @@ const ReceiveContent = () => {
             <ReceiveCard type='non-default'>
                 <WarningCard
                     status='unlike'
-                    imgUrl='https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/l-arsene-lupin-georges-descrieres-est-mort-595818/12040310-1-fre-FR/L-Arsene-Lupin-Georges-Descrieres-est-mort.jpg'
-                />
+                    imgUrl='https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/l-arsene-lupin-georges-descrieres-est-mort-595818/12040310-1-fre-FR/L-Arsene-Lupin-Georges-Descrieres-est-mort.jpg' onClick={undefined}                />
                 <WarningCard
                     status='unlike'
-                    imgUrl='https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/l-arsene-lupin-georges-descrieres-est-mort-595818/12040310-1-fre-FR/L-Arsene-Lupin-Georges-Descrieres-est-mort.jpg'
-                />
+                    imgUrl='https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/l-arsene-lupin-georges-descrieres-est-mort-595818/12040310-1-fre-FR/L-Arsene-Lupin-Georges-Descrieres-est-mort.jpg' onClick={undefined}                />
                 <WarningCard
                     status='unlike'
-                    imgUrl='https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/l-arsene-lupin-georges-descrieres-est-mort-595818/12040310-1-fre-FR/L-Arsene-Lupin-Georges-Descrieres-est-mort.jpg'
-                />
+                    imgUrl='https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/culture/l-arsene-lupin-georges-descrieres-est-mort-595818/12040310-1-fre-FR/L-Arsene-Lupin-Georges-Descrieres-est-mort.jpg' onClick={undefined}                />
             </ReceiveCard>
 
             <div className={styles.d_flex_between}>
@@ -82,8 +76,7 @@ const ReceiveContent = () => {
             <ReceiveCard type='non-default'>
                 <WarningCard
                     status='unlike'
-                    imgUrl='https://www.dci.com.br/wp-content/uploads/2021/01/lupin-3.jpg'
-                />
+                    imgUrl='https://www.dci.com.br/wp-content/uploads/2021/01/lupin-3.jpg' onClick={undefined}                />
             </ReceiveCard>
         </div>
 

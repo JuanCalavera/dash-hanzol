@@ -34,7 +34,6 @@ const CardHome = ({ imgUrl, alt, title, subtitle, status, content, data }: CardH
                 </div>
                 <div className={styles.d_flex}>
                     {icon}
-                    <BsThreeDotsVertical size={10} className={styles.icon_menu} />
                 </div>
             </div>
             <p className={styles.content}>{content}</p>

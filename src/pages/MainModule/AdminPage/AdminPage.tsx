@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BiTrash } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import FilterList from "../../../components/FilterList/FilterList";
 import Header from "../../../components/Header/Header";
 import { baseUrl, headers, userType } from "../../../utils/auth";
 
@@ -11,6 +12,7 @@ const AdminPage = () => {
 
     const navigate = useNavigate();
     const [result, setResult] = useState([]);
+    const [searchInput, setSearchInput] = useState<string>('');
 
     useEffect(() => {
         const user = userType(localStorage['token_dash']);
@@ -44,28 +46,42 @@ const AdminPage = () => {
 
     }
 
+    const search = () => {
+        axios.get(`${baseUrl}search`, {
+
+        })
+    }
+
+
 
     return (
         <div>
             <Header
                 title='Página Admin'
             />
-            {result.length !== 0 ?
-                result?.map((e: any, key: number) => {
-                    return <div className={styles.cards} id={"client" + e.client.id}>
+            <FilterList
+                orderTitle={""}
+                onClick={() => { }}
+                textValueSearch={searchInput}
+                onChange={(e: any) => { setSearchInput(e.target.value); }}
+                onClickSearch={undefined} />
+            {result &&
+                result.map((e: any, key: number) => {
+                    return <div className={styles.cards} id={"client" + e.id}>
                         <div className={styles.d_flex}>
-                            <p>Nome: {e.client.name}</p>
+                            <p>Nome: {e.name}</p>
                             <div className={styles.flex}>
-                                <p style={{ marginRight: 10 }}>COD.{e.client.id}</p>
-                                <div className={styles.button} onClick={() => { deleteUser(e.client.id) }}>
+                                <p style={{ marginRight: 10 }}>COD.{e.id}</p>
+                                <div className={styles.button} onClick={() => { if (window.confirm('Deseja mesmo excluir este usuário?')) { deleteUser(e.id) } }}>
                                     <BiTrash />
                                 </div>
                             </div>
                         </div>
-                        <p>Email: {e.client.email}</p>
+                        <p>Email: {e.email}</p>
                         <p>Requisições: {e.pub_requests}</p>
+                        <p>Tipo de usuário: {e.type === 'agency' ? 'agência' : 'cliente'}</p>
                     </div>
-                }) : <div><h2 style={{ color: 'white', textAlign: 'center' }}>Sem nenhum cliente :( </h2></div>}
+                })}
         </div>
     );
 }

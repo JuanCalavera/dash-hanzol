@@ -7,33 +7,37 @@ const Projects = () => {
     return <div>
         <Header title="Meus Projetos" />
         <FilterList
-        onClick={() => {}}
-        orderTitle="Valores Maiores" />
-        <ProjectList
-        dateTime="05/05/22 - 18:00h"
-        title="Redes Sociais"
-        subtitle="Card Animado"
-        total="R$3000,00"
-        widthConceitual={'100%'}
-        widthImplementação={'100%'}
-        widthRevisão={'100%'}
-        widthEntrega={'10%'}
-        finalDelivery="28/06/22"
-        status="Atrasado"
+            onClick={() => { }}
+            orderTitle="Valores Maiores"
+            textValueSearch={""}
+            onChange={undefined}
+            onClickSearch={undefined}
         />
         <ProjectList
-        dateTime="01/04/22 - 13:58h"
-        title="Papelaria"
-        subtitle="Envelope"
-        total="R$3000,00"
-        widthConceitual={'100%'}
-        widthImplementação={'10%'}
-        widthRevisão={'0%'}
-        widthEntrega={'0%'}
-        finalDelivery="28/06/22"
-        status="Em Andamento"
+            dateTime="05/05/22 - 18:00h"
+            title="Redes Sociais"
+            subtitle="Card Animado"
+            total="R$3000,00"
+            widthConceitual={'100%'}
+            widthImplementação={'100%'}
+            widthRevisão={'100%'}
+            widthEntrega={'10%'}
+            finalDelivery="28/06/22"
+            status="Atrasado"
         />
-        <FloatingButton/>
+        <ProjectList
+            dateTime="01/04/22 - 13:58h"
+            title="Papelaria"
+            subtitle="Envelope"
+            total="R$3000,00"
+            widthConceitual={'100%'}
+            widthImplementação={'10%'}
+            widthRevisão={'0%'}
+            widthEntrega={'0%'}
+            finalDelivery="28/06/22"
+            status="Em Andamento"
+        />
+        <FloatingButton />
     </div>
 }
 

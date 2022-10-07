@@ -6,3 +6,20 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.input_search{
+    width: 100%;
+    border-style: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.button_search{
+    border-style: none;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ffbf00;
+    font-weight: bold;
+}

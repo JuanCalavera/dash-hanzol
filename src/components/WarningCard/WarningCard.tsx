@@ -2,10 +2,11 @@ import styles from './WarningCard.module.scss';
 
 export interface WarningCard {
     status: string,
-    imgUrl: string
+    imgUrl: string,
+    onClick: any
 }
 
-const WarningCard = ({ status, imgUrl }: WarningCard) => {
+const WarningCard = ({ status, imgUrl, onClick }: WarningCard) => {
     let icon;
     let image = imgUrl;
     if (status === 'like') {
@@ -30,7 +31,7 @@ const WarningCard = ({ status, imgUrl }: WarningCard) => {
     } else if (status === 'null') {
         icon = <div></div>;
     }
-    return <div style={{ backgroundImage: `url(${image})` }}>
+    return <div onClick={onClick} style={{ backgroundImage: `url(${image})` }}>
         <div className={styles.d_flex_justify_end}>
             {icon}
         </div>

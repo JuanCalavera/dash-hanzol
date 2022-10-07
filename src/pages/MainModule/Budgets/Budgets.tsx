@@ -7,8 +7,12 @@ const Budgets = () => {
     return <div>
         <Header title="Orçamentos recebidos" />
         <FilterList
-        onClick={() => {}}
-        orderTitle="Mais Recentes" />
+            onClick={() => { }}
+            orderTitle="Mais Recentes"
+            textValueSearch={""}
+            onChange={undefined}
+            onClickSearch={undefined}
+        />
         <ListBudgets
             buttonText="Aprovar"
             receiveText="03/04/22 - 20:58h"
@@ -33,7 +37,7 @@ const Budgets = () => {
             content="Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss, é um leite divinis..."
             total="R$3.450,10"
         />
-        <FloatingButton/>
+        <FloatingButton />
     </div>
 }
 

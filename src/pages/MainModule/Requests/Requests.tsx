@@ -4,7 +4,7 @@ import ListRequest from "../../../components/ListRequest/ListRequest";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { baseUrl, subtractTime, userType } from "../../../utils/auth";
+import { baseStorageUrl, baseUrl, subtractTime, userType } from "../../../utils/auth";
 import FloatingButtonPlus from "../../../components/FloatingButtonPlus/FloatingButtonPlus";
 import { RiUserSettingsFill } from "react-icons/ri";
 import styles from "./Requests.module.scss";
@@ -16,6 +16,7 @@ const Requests = () => {
     const [title, setTitle] = useState<string>("Mais Recentes");
     const [headText, setHeadText] = useState<string>("Mais Recentes");
     const [useNavigation, setUseNavigation] = useState<boolean>(false);
+    const [buttonAdmin, setButtonAdmin] = useState<boolean>(false);
 
     useEffect(() => {
 
@@ -26,6 +27,7 @@ const Requests = () => {
             if (res === 'agency') {
                 setHeadText("Solicitações enviadas para você");
                 setUseNavigation(true);
+                setButtonAdmin(true);
             } else if (res === 'client') {
                 setHeadText("Minhas Solicitações");
             }
@@ -67,17 +69,24 @@ const Requests = () => {
         <FilterList
             onClick={filterList}
             orderTitle={title}
+            textValueSearch={""}
+            onChange={undefined}
+            onClickSearch={undefined}
         />
 
-        <div className={styles.admin_button} onClick={() => {navigate('/usuarios')}}>
-            <RiUserSettingsFill /> Administrar Usuários
-        </div>
+        {buttonAdmin &&
+            <div className={styles.admin_button} onClick={() => { navigate('/usuarios') }}>
+                <RiUserSettingsFill /> Administrar Usuários
+            </div>
+        }
 
         {listsItem?.map((list: any, key: number) => {
             let image = "";
-            if (list.reference_file != undefined) {
-                image = list.reference_file;
+            if (list.files_path !== undefined && list.files_path !== null) {
+                image = `${baseStorageUrl}${JSON.parse(list.files_path)[0]}`;
             }
+            console.log(image);
+
             return (
                 <ListRequest
                     dateAndHour={list.deliver_date}
