@@ -31,8 +31,7 @@ const AgencyRegister = () => {
         inputCnpj.length !== 11 ? setInputCnpjWarning(true) : setInputCnpjWarning(false);
         inputPassword === '' ? setInputPasswordWarning(true) : setInputPasswordWarning(false);
         setInputEmailFormat(inputEmail.search('@') === -1);
-
-        alert('vim pra cá');
+        
         if (inputNameWarning || inputEmailWarning || inputEmail.search('@') < 0 || inputCnpjWarning || inputPasswordWarning) return;
 
 
@@ -45,7 +44,6 @@ const AgencyRegister = () => {
             },
             { 'headers': { 'Accept': 'Application/json' } })
             .then((resPost) => {
-                console.log(resPost);
                 setsuccessNotification(true);
             })
     }
