@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const baseUrl = 'http://127.0.0.1:8000/api/';
-export const baseStorageUrl = 'http://127.0.0.1:8000/storage/';
+export const baseUrl = 'http://hanzol-dash-backend.herokuapp.com/api/';
+export const baseStorageUrl = 'http://hanzol-dash-backend.herokuapp.com/storage/';
 // export const baseUrl = 'http://hanzol-dash-backend.herokuapp.com/api/';
 
 export const headers = (token: string) => {
