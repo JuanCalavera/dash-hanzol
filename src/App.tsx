@@ -1,16 +1,4 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "./redux/hooks";
-
-import AuthModule from "./pages/Auth/AuthModule";
-import MainModule from "./pages/MainModule/MainModule";
 import LoadingScreen from "./pages/LoadingScreen/LoadingScreen";
-
-import { getCsrfToken } from "./redux/slices/authSlice/authAsyncActions";
-import { selectToken } from "./redux/slices/authSlice/authSelectors";
-import { fetchAgencyData } from "./redux/slices/pubRequestSlice/pubRequestAsyncActions";
-import { selectLoading } from "./redux/slices/mainSlice/mainSelectors";
-import { endLoad, initLoad } from "./redux/slices/mainSlice/mainSlice";
-import { fetchPubs } from "./redux/slices/mainSlice/mainAsyncActions";
 
 import "./App.css";
 
@@ -27,7 +15,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Start from "./pages/Auth/ForgetPassword/Start/Start";
 import SetMail from "./pages/Auth/ForgetPassword/SetMail/SetMail";
 import Projects from "./pages/MainModule/Projects/Projects";
-import Budgets from "./pages/MainModule/Budgets/Budgets";
 import Login from "./pages/Auth/Login/Login";
 import CreateNewRequest from "./pages/MainModule/CreateNewRequest/CreateNewRequest";
 import Choose from "./pages/MainModule/Choose/Choose";
@@ -39,10 +26,9 @@ import AddClient from "./pages/MainModule/AddClient/AddClient";
 import ClientRegister from "./pages/Auth/ClientRegister/ClientRegister";
 import CommentRegister from "./pages/MainModule/CommentRegister/CommentRegister";
 import AdminPage from "./pages/MainModule/AdminPage/AdminPage";
+import AgencyRegister from "./pages/Auth/AgencyRegister/AgencyRegister";
 
 function App() {
-
-	let content = null;
 
 	return <BrowserRouter>
 		<Routes>
@@ -56,6 +42,7 @@ function App() {
 			<Route path="/criar-solicitacoes" element={<CreateNewRequest />} />
 			<Route path="/criar-solicitacoes/:id" element={<AddFilesRequest />} />
 			<Route path="/criar-cliente/" element={<AddClient />} />
+			<Route path="/criar-agencia/:token" element={<AgencyRegister />} />
 			<Route path="/criar-cliente/:cnpj" element={<ClientRegister/>} />
 			<Route path="/criar-comentario/:pub" element={<CommentRegister/>} />
 			<Route path="/comentarios/:pub" element={<Comments />} />

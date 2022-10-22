@@ -1,0 +1,40 @@
+.container{
+    margin: 30% 30px 0px 30px;
+    color: #fff;
+}
+
+.container > div{
+    margin-top: 10px;
+}
+
+.container > div > label{
+    display: block;
+}
+
+.container > div > input{
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+}
+
+.container > button {
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: none;
+    margin: 10px;
+    font-size: 15px;
+}
+
+.container > div > p {
+    margin-top: 0;
+}
+
+.card{
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+}
